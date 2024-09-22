@@ -1,5 +1,9 @@
 # nix-homelab
 
+## 📌 TODO:
+
+- [ ] Use sops nix for secrets: https://github.com/Mic92/sops-nix
+
 ## Getting started
 
 ### Install NixOS VM
