@@ -29,7 +29,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # UNCOMMENT this to enable docker
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
 
