@@ -54,6 +54,7 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
+    pkgs.nano
 
     # UNCOMMENT the following to install these packages systemwide
     # pkgs.jq
