@@ -59,3 +59,13 @@ nixfmt --version
 # Format file
 nixfmt configuration.nix
 ```
+
+## Known Issue
+
+### VSCode Server
+
+Remote SSH with VSCode doesn't work out the box.
+This package has been installed with flake using this package: https://github.com/nix-community/nixos-vscode-server/tree/master
+
+> [!IMPORTANT]
+> Follow these instructions after deployment: https://github.com/nix-community/nixos-vscode-server/tree/master?tab=readme-ov-file#enable-the-service
