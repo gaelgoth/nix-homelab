@@ -15,7 +15,7 @@
 
 - Connect to NixOS VM
 - Set a password to enable SSH connection with `passwd` command
-- Get IP addresse with `ip addr` command
+- Get IP address with `ip addr` command
 
 On local env set up a public key for SSH connection
 
@@ -24,7 +24,16 @@ ssh-keygen -f ~/.ssh/nixos-homelab
 ssh-copy-id -i ~/.ssh/nixos-homelab root@<IP_ADDRESS>
 ```
 
-or manually add public key under server `~/.ssh/another-machine` file
+or manually add public key under server `~/.ssh/another-machine` file.
+
+- On local env. update `~/.ssh/config` file:
+
+```txt
+Host <IP_ADDRESS>
+  HostName <IP_ADDRESS>
+  User root
+  IdentityFile ~/.ssh/another-machine
+```
 
 ### Rebuild config
 
