@@ -1,9 +1,5 @@
 # nix-homelab
 
-## 📌 TODO:
-
-- [ ] Use sops nix for secrets: https://github.com/Mic92/sops-nix
-
 ## Getting started
 
 ### Install NixOS VM
@@ -39,6 +35,39 @@ Host <IP_ADDRESS>
   IdentityFile ~/.ssh/another-machine
 ```
 
+### SOPS
+
+```sh
+mkdir -p ~/.config/sops/age
+
+# generate new key at ~/.config/sops/age/keys.txt
+nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
+
+# generate new key at ~/.config/sops/age/keys.txt from private ssh key at ~/.ssh/private
+nix run nixpkgs#ssh-to-age -- -private-key -i ~/.ssh/private > ~/.config/sops/age/keys.txt
+
+# get a public key of ~/.config/sops/age/keys.txt
+nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
+```
+
+Set public key in `.sops.yaml`:
+
+```yaml
+keys:
+  - &primary { { SET KEY HERE } }
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *primary
+```
+
+```shell
+mkdir secret
+# create sops secret (example: https://github.com/Mic92/sops-nix)
+sops secrets.yaml
+```
+
 ### Rebuild config
 
 - SSH into server
@@ -54,6 +83,9 @@ Build:
 **Install `nixfmt`**
 
 ```sh
+# install sops globally
+nix-env -iA nixpkgs.sops
+
 # install nixfmt globally
 nix-env -iA nixpkgs.nixfmt
 
@@ -63,13 +95,3 @@ nixfmt --version
 # Format file
 nixfmt configuration.nix
 ```
-
-## Known Issue
-
-### VSCode Server
-
-Remote SSH with VSCode doesn't work out the box.
-This package has been installed with flake using this package: https://github.com/nix-community/nixos-vscode-server/tree/master
-
-> [!IMPORTANT]
-> Follow these instructions after deployment: https://github.com/nix-community/nixos-vscode-server/tree/master?tab=readme-ov-file#enable-the-service
