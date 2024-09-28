@@ -142,13 +142,13 @@ in {
     "/mnt/documents" = {
       device = "${nasIp}:/volume1/documents";
       fsType = "nfs";
-      options = nfsOptions;
+      options = nfsDefaultOptions;
     };
 
     "/mnt/nvme" = {
       device = "${nasIp}:/volume2/nvme";
       fsType = "nfs";
-      options = nfsOptions;
+      options = nfsDefaultOptions;
     };
   };
 
