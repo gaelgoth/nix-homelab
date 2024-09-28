@@ -1,4 +1,9 @@
-{ modulesPath, config, lib, pkgs, inputs, ... }: {
+{ modulesPath, config, lib, pkgs, inputs, ... }:
+let
+  nasIp = "192.168.1.2";
+  nfsDefaultOptions =
+    [ "nofail" "noatime" "nolock" "intr" "tcp" "actimeo=1800" ];
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -46,6 +51,15 @@
   networking = {
     hostName = "nixos"; # Define your hostname.
     firewall.enable = true;
+
+    # Set static IP for ens3
+    interfaces.ens3.useDHCP = false;
+    interfaces.ens3.ipv4.addresses = [{
+      address = "192.168.1.5";
+      prefixLength = 24;
+    }];
+    defaultGateway = "192.168.1.1";
+    nameservers = [ "192.168.1.2" "8.8.8.8" "1.1.1.1" ];
   };
 
   # Set your time zone.
@@ -81,8 +95,9 @@
     pkgs.curl
     pkgs.gitMinimal
     pkgs.nano
-    pkgs.sops
     pkgs.ncdu
+    pkgs.nixfmt
+    pkgs.sops
 
     # UNCOMMENT the following to install these packages systemwide
     # pkgs.jq
@@ -115,6 +130,26 @@
     #   ];
     # };
 
+  };
+
+  # NFS
+  fileSystems = {
+    "/mnt/media" = {
+      device = "${nasIp}:/volume1/media";
+      fsType = "nfs";
+      options = nfsDefaultOptions;
+    };
+    "/mnt/documents" = {
+      device = "${nasIp}:/volume1/documents";
+      fsType = "nfs";
+      options = nfsOptions;
+    };
+
+    "/mnt/nvme" = {
+      device = "${nasIp}:/volume2/nvme";
+      fsType = "nfs";
+      options = nfsOptions;
+    };
   };
 
   system.stateVersion = "23.11";
