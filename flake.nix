@@ -12,7 +12,10 @@
   outputs = { self, nixpkgs, disko, vscode-server, sops-nix, ... }: {
     nixosConfigurations.nixos-anywhere-vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit sops-nix; };
+      specialArgs = {
+        inherit sops-nix;
+        vars = import ./vars.nix;
+      };
       modules = [
         disko.nixosModules.disko
         vscode-server.nixosModules.default
@@ -20,6 +23,7 @@
 
         ./configuration.nix
         ./containers/speedtest
+        ./containers/arr
         # ./containers/jellyfin
 
         ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
