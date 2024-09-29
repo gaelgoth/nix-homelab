@@ -2,6 +2,10 @@
 
 ## Getting started
 
+### TODOs
+
+- [ ] Homepage dynamic loading
+
 ### Install NixOS VM
 
 - Virtual ISO Link: https://nixos.org/download/#nixos-iso

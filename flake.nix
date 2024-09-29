@@ -17,7 +17,11 @@
         disko.nixosModules.disko
         vscode-server.nixosModules.default
         sops-nix.nixosModules.sops
+
         ./configuration.nix
+        ./containers/speedtest
+        # ./containers/jellyfin
+
         ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
       ];
     };

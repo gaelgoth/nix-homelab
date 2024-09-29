@@ -69,7 +69,16 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
 
   # UNCOMMENT this to enable docker
-  virtualisation.docker.enable = true;
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   programs.fish.enable = true;
 
@@ -98,6 +107,8 @@ in {
     pkgs.ncdu
     pkgs.nixfmt
     pkgs.sops
+    pkgs.podman-tui
+    pkgs.docker-compose
 
     # UNCOMMENT the following to install these packages systemwide
     # pkgs.jq
