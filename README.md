@@ -1,4 +1,4 @@
-# nix-homelab
+# nix-homelab (🧑🏾‍💻work in progress)
 
 ## Getting started
 
