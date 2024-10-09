@@ -1,0 +1,7 @@
+headerStyle: clean
+showStats: true
+
+quicklaunch:
+    searchDescriptions: true
+    hideInternetSearch: true
+    hideVisitURL: true

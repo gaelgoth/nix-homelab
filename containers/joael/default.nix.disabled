@@ -1,0 +1,22 @@
+    joal = {
+      image = "anthonyraymond/joal";
+      autoStart = true;
+      extraOptions = [
+        "--pull=newer"
+        "--joal-conf=/data"
+        "--spring.main.web-environment=true"
+        "--server.port=80"
+        "--joal.ui.path.prefix=joal"
+        "--joal.ui.secret-token=SECRET_TOKEN"
+        "-l=homepage.group=Media"
+        "-l=homepage.name=Ratio Master"
+        "-l=homepage.icon=mdi-arrow-top-left"
+        "-l=homepage.href=http://192.168.1.5:8445/joal/ui/#/"
+        # "-l=homepage.href=https://bazarr.${vars.domainName}"
+      ];
+      volumes = [
+        "joal-config:/data"
+      ];
+      ports = [ "8445:80"];
+      environment = { TZ = vars.timeZone; };
+    };

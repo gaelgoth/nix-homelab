@@ -13,7 +13,7 @@
       volumes = [
         "jellyfin-config:/config"
         "jellyfin-cache:/cache"
-        "/mnt/media:/media"
+        "${vars.mediaPath}:/media"
       ];
       ports = [ "8096:8096" ];
       environment = {

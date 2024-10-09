@@ -22,8 +22,22 @@
         sops-nix.nixosModules.sops
 
         ./configuration.nix
-        ./containers/speedtest
+
+        ./modules/monitoring
+
         ./containers/arr
+        ./containers/changedetection
+        ./containers/dozzle
+        ./containers/grafana
+        ./containers/handbrake
+        ./containers/homepage
+        ./containers/neko
+        ./containers/pairdrop
+        ./containers/qbittorrent
+        ./containers/speedtest
+        ./containers/stirlingpdf
+        ./containers/uptimekuma
+
         # ./containers/jellyfin
 
         ({ config, pkgs, ... }: { services.vscode-server.enable = true; })

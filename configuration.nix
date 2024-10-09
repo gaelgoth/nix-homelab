@@ -105,7 +105,7 @@ in {
     pkgs.gitMinimal
     pkgs.nano
     pkgs.ncdu
-    pkgs.nixfmt
+    pkgs.nixfmt-classic
     pkgs.sops
     pkgs.podman-tui
     pkgs.docker-compose
