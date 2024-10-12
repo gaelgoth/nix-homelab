@@ -91,8 +91,8 @@ in {
     root = {
       # change this to your ssh key
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIdoZbVnha4FIh3Kci/9KOiSkbdHHDzTk3P1am6djOL/ root@docker-desktop"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3aMW6GMHZ68Iw4v9+HPgbbd/uyUPMWLl6rcroY5LIR gael@mac.lan"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfjN8It6HvrbbF6jo2hIAu2AAvGKevBEtQ2HYAuBzxm gael@mac.lan"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBileQ5HAicVceiOgApWVAgr28/HFZJMjuglqPXnlHV gael@container.lan"
       ];
     };
 
