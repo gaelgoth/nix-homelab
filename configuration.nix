@@ -16,26 +16,6 @@ in {
     defaultSopsFormat = "yaml";
   };
 
-  sops.secrets.example-key = { };
-  sops.secrets.example-key = { };
-  sops.secrets."myservice/my_subdir/my_secret" = { owner = "root"; };
-
-  systemd.services."root" = {
-    script = ''
-      echo "
-      Hey bro! I'm a service, and imma send this secure password:
-      $(cat ${config.sops.secrets."myservice/my_subdir/my_secret".path})
-      located in:
-      ${config.sops.secrets."myservice/my_subdir/my_secret".path}
-      to database and hack the mainframe
-      " > /var/lib/root/testfile
-    '';
-    serviceConfig = {
-      User = "root";
-      WorkingDirectory = "/var/lib/root";
-    };
-  };
-
   # allow unfree packages to be installed
   nixpkgs.config = { allowUnfree = true; };
 
@@ -49,7 +29,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
+    hostName = "nixos";
     firewall.enable = true;
 
     # Set static IP for ens3
@@ -68,7 +48,6 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # UNCOMMENT this to enable docker
   virtualisation.containers.enable = true;
   virtualisation = {
     podman = {
@@ -89,15 +68,6 @@ in {
       enable = true;
       settings.PasswordAuthentication = false;
     };
-
-    # UNCOMMENT this to enable headscale
-    # headscale.enable = true;
-
-    # UNCOMMENT this to enable a prometheus node exporter
-    # prometheus.exporters.node.enable = true;
-
-    # UNCOMMENT this to enable homeassistant-satellite - it's prob necessary to add more configuration here
-    # homeassistant-satellite.enable = true;
   };
 
   environment.systemPackages = map lib.lowPrio [

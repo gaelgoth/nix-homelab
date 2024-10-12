@@ -1,31 +1,34 @@
-- Media: []
+# - Media: []
 
-- Services:
-  - Synology Photos:
-        icon: synology-photos.png
-        href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
+# - Services:
+#   - Synology Photos:
+#         icon: synology-photos.png
+#         href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
 
-- System: []
+# - System: []
 
-# - Server: FIXME: Currently returns a 500 error
-#     - Info:
-#         widget:
-#           type: glances
-#           url: http://host.containers.internal:61208
-#           metric: info
-#     - CPU Temp:
-#         widget:
-#           type: glances
-#           url: http://host.containers.internal:61208
-#           metric: sensor:Tctl
-#     - Storage:
-#         widget:
-#           type: glances
-#           url: http://host.containers.internal:61208
-#           metric: process
-#     - Network:
-#         widget:
-#           type: glances
-#           url: http://host.containers.internal:61208
-#           metric: network:enp1s0f0
-#           chart: true
+- Server:
+    - Info:
+        widget:
+          type: glances
+          version: 4
+          url: http://192.168.1.5:61208
+          metric: info
+    # - CPU Temp:
+    #     widget:
+    #       type: glances
+    #       url: http://192.168.1.5:61208
+    #       metric: sensor:Tctl
+    - Process:
+        widget:
+          type: glances
+          version: 4
+          url: http://192.168.1.5:61208
+          metric: process
+          chart: ifn
+    # - Network:
+    #     widget:
+    #       type: glances
+    #       url: http://192.168.1.5:61208
+    #       metric: network:enp1s0f0
+    #       chart: true

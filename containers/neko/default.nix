@@ -8,7 +8,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Neko"
         "-l=homepage.icon=neko.svg"
-        "-l=homepage.href=http://192.168.1.5:3023/"
+        "-l=homepage.href=http://192.168.1.5:3023"
         "-l=homepage.description=Remote browser service with Firefox"
       ];
       ports = [ "3023:8080" "52000-52100:52000-52100/udp" ];

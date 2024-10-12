@@ -1,5 +1,6 @@
 headerStyle: clean
-showStats: true
+showStats: false
+statusStyle: "dot"
 
 quicklaunch:
     searchDescriptions: true
