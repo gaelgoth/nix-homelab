@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, disko, vscode-server, sops-nix, ... }: {
-    nixosConfigurations.nixos-anywhere-vm = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos-homelab-vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit sops-nix;

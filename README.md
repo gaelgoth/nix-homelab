@@ -79,8 +79,8 @@ sops secrets.yaml
 
 Build:
 
-- Dry-run: sudo nixos-rebuild dry-activate --flake .#nixos-anywhere-vm
-- Rebuild: sudo nixos-rebuild --flake .#nixos-anywhere-vm switch
+- Dry-run: sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm
+- Rebuild: sudo nixos-rebuild --flake .#nixos-homelab-vm switch
 
 ## Local env utils
 
