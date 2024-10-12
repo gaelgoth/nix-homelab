@@ -4,8 +4,6 @@
 
 ### TODOs
 
-- [ ] Homepage dynamic loading
-
 ### Install NixOS VM
 
 - Virtual ISO Link: https://nixos.org/download/#nixos-iso
@@ -18,14 +16,26 @@
 ### Initialize VM
 
 - Connect to NixOS VM
-- Set a password to enable SSH connection with `passwd` command
+- Set a password to enable SSH connection with `sudo passwd` command
 - Get IP address with `ip addr` command
 
 On local env set up a public key for SSH connection
 
+> [!NOTE] To ease deployment a container with `linux/amd64` because of some incompatibility with my ARM64 MacBook Pro
+
 ```sh
-ssh-keygen -f ~/.ssh/nixos-homelab
-ssh-copy-id -i ~/.ssh/nixos-homelab root@<IP_ADDRESS>
+docker compose -f misc/docker-compose.yml up
+docker exec -it nix /bin/sh
+```
+
+```sh
+# From Mac
+ssh-keygen -f ~/.ssh/nix-homelab-mac -C "gael@mac.lan"
+ssh-copy-id -i ~/.ssh/nix-homelab-mac root@<IP_ADDRESS>
+
+# From Container
+ssh-keygen -f ~/.ssh/nix-homelab-container -C "gael@container.lan"
+# Then copy the public key generated and put it in /root/.ssh/authorized_keys on the VM
 ```
 
 or manually add public key under server `~/.ssh/another-machine` file.
@@ -38,6 +48,18 @@ Host <IP_ADDRESS>
   User root
   IdentityFile ~/.ssh/another-machine
 ```
+
+- Double check disk device name with `lsblk`, if not `sda` update `disk-config.nix`
+- **Important** Update SSH keys in `configuration.nix`
+- From container run these commands:
+
+```sh
+cd workdir
+
+nix run github:nix-community/nixos-anywhere -- --flake .#nixos-homelab-vm root@<IP_ADDRESS>
+```
+
+Once deployment is finished
 
 ### SOPS
 
@@ -99,3 +121,7 @@ nixfmt --version
 # Format file
 nixfmt configuration.nix
 ```
+
+## References
+
+- https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146

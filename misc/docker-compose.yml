@@ -1,0 +1,20 @@
+services:
+  nix:
+    image: nixpkgs/nix:nixos-23.11
+    platform: linux/amd64
+    container_name: nix # Set the name of the container
+    volumes:
+      - ../:/root/workdir
+      - nixos:/root
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c "
+        mkdir -p /root/.config/nix &&
+        echo 'experimental-features = nix-command flakes' > /root/.config/nix/nix.conf &&
+        echo 'filter-syscalls = false' >> /root/.config/nix/nix.conf &&
+        nix-daemon & /bin/sh
+      "
+
+volumes:
+  nixos:
