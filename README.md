@@ -126,3 +126,4 @@ nixfmt configuration.nix
 
 - `nixos-anywhere` with ARM Mac: https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146
 - Set up `sops-nix`: https://www.youtube.com/watch?v=G5f6GC7SnhU&t=1s
+- Flake auto-upgrade: https://github.com/eh8/chenglab/blob/main/.github/workflows/flake.yml
