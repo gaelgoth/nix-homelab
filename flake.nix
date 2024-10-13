@@ -27,6 +27,7 @@
 
         ./containers/arr
         ./containers/changedetection
+        ./containers/dockge
         ./containers/dozzle
         ./containers/grafana
         ./containers/handbrake
