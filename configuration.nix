@@ -75,14 +75,23 @@ in {
   ];
 
   users.users = {
-
     root = {
-      # change this to your ssh key
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKfjN8It6HvrbbF6jo2hIAu2AAvGKevBEtQ2HYAuBzxm gael@mac.lan"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBileQ5HAicVceiOgApWVAgr28/HFZJMjuglqPXnlHV gael@container.lan"
       ];
+      home = "/root";
+      extraGroups = [ "wheel" ];
     };
+  };
+
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+      Host github.com
+        IdentityFile ~/.ssh/nix-homelab-github
+        IdentitiesOnly yes
+    '';
   };
 
   # NFS mounts
