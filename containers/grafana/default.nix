@@ -1,7 +1,7 @@
 { config, vars, ... }: {
   virtualisation.oci-containers.containers = {
     grafana = {
-      image = "grafana/grafana";
+      image = "grafana/grafana:11.2.2";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
