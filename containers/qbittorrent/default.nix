@@ -10,11 +10,11 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=qBittorrent"
         "-l=homepage.icon=qbittorrent.svg"
-        "-l=homepage.href=http://192.168.1.5:8080"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:8080"
         # "-l=homepage.href=https://bazarr.${vars.domainName}"
         "-l=homepage.description=Torrent Client"
         "-l=homepage.widget.type=qbittorrent"
-        "-l=homepage.widget.url=http://192.168.1.5:8080"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8080"
         "-l=homepage.widget.username={{HOMEPAGE_FILE_QBITTORENT_USERNAME}}"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_QBITTORENT_PASSWORD}}"
       ];

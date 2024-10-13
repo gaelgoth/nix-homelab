@@ -10,11 +10,11 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Jellyseerr"
         "-l=homepage.icon=jellyseerr.svg"
-        "-l=homepage.href=http://192.168.1.5:5055"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:5055"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Discover and request media"
         "-l=homepage.widget.type=jellyseerr"
-        "-l=homepage.widget.url=http://192.168.1.5:5055"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:5055"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_JELLYSEERR_KEY}}"
       ];
       volumes = [ "jellyseerr-config:/app/config" ];
@@ -33,12 +33,12 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Prowlarr"
         "-l=homepage.icon=prowlarr.svg"
-        "-l=homepage.href=http://192.168.1.5:9696"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:9696"
         # "-l=homepage.href=https://prowlarr.${vars.domainName}"
         "-l=homepage.description=Manage RSS fetch"
         "-l=homepage.widget.type=prowlarr"
         "-l=homepage.widget.fields=['numberOfGrabs', 'numberOfQueries']"
-        "-l=homepage.widget.url=http://192.168.1.5:9696"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:9696"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_PROWLARR_KEY}}"
       ];
       volumes = [ "prowlarr-config:/config" ];
@@ -54,12 +54,12 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Sonarr"
         "-l=homepage.icon=sonarr.svg"
-        "-l=homepage.href=http://192.168.1.5:8989"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:8989"
         # "-l=homepage.href=https://sonarr.${vars.domainName}"
         "-l=homepage.description=Monitor RSS for new episodes of TV shows"
         "-l=homepage.widget.enableQueue=true"
         "-l=homepage.widget.type=sonarr"
-        "-l=homepage.widget.url=http://192.168.1.5:8989"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8989"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_SONARR_KEY}}"
       ];
       volumes = [ "sonarr-config:/config" "${vars.mediaPath}/Shows:/tv" ];
@@ -75,12 +75,12 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Radarr"
         "-l=homepage.icon=radarr.svg"
-        "-l=homepage.href=http://192.168.1.5:7878"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:7878"
         # "-l=homepage.href=https://radarr.${vars.domainName}"
         "-l=homepage.description=Monitor RSS for new episodes of TV shows"
         "-l=homepage.widget.enableQueue=true"
         "-l=homepage.widget.type=radarr"
-        "-l=homepage.widget.url=http://192.168.1.5:7878"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:7878"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_RADARR_KEY}}"
       ];
       volumes = [ "radarr-config:/config" "${vars.mediaPath}/Shows:/tv" ];
@@ -96,12 +96,12 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Readarr"
         "-l=homepage.icon=readarr.svg"
-        "-l=homepage.href=http://192.168.1.5:8787"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:8787"
         # "-l=homepage.href=https://readarr.${vars.domainName}"
         "-l=homepage.description=Monitor RSS for EBooks"
         "-l=homepage.widget.enableQueue=true"
         "-l=homepage.widget.type=readarr"
-        "-l=homepage.widget.url=http://192.168.1.5:8787"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8787"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_READARR_KEY}}"
       ];
       volumes = [
@@ -121,11 +121,11 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Bazarr"
         "-l=homepage.icon=bazarr.svg"
-        "-l=homepage.href=http://192.168.1.5:6767"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:6767"
         # "-l=homepage.href=https://bazarr.${vars.domainName}"
         "-l=homepage.description=Subtitle management"
         "-l=homepage.widget.type=bazarr"
-        "-l=homepage.widget.url=http://192.168.1.5:6767"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:6767"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_BAZARR_KEY}}"
       ];
       volumes = [

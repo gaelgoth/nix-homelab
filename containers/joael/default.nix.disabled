@@ -1,3 +1,5 @@
+    { config, vars, ... }:
+
     joal = {
       image = "anthonyraymond/joal";
       autoStart = true;
@@ -11,7 +13,7 @@
         "-l=homepage.group=Media"
         "-l=homepage.name=Ratio Master"
         "-l=homepage.icon=mdi-arrow-top-left"
-        "-l=homepage.href=http://192.168.1.5:8445/joal/ui/#/"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:8445/joal/ui/#/"
         # "-l=homepage.href=https://bazarr.${vars.domainName}"
       ];
       volumes = [

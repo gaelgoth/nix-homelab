@@ -10,7 +10,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Handbrake"
         "-l=homepage.icon=handbrake.svg"
-        "-l=homepage.href=http://192.168.1.5:5800"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:5800"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Video converter"
       ];

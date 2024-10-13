@@ -8,11 +8,11 @@
         "-l=homepage.group=System"
         "-l=homepage.name=dozzle"
         "-l=homepage.icon=dozzle.svg"
-        "-l=homepage.href=http://192.168.1.5:3024"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:3024"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Containers logs"
         "-l=homepage.widget.type=dozzle"
-        "-l=homepage.widget.url=http://192.168.1.5:3024"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3024"
         "-l=homepage.widget.user=admin"
         "-l=homepage.widget.user=TODO"
       ];

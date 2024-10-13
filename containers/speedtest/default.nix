@@ -10,11 +10,11 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Speedtest"
         "-l=homepage.icon=speedtest-tracker.png"
-        "-l=homepage.href=http://192.168.1.5:8765"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:8765"
         # "-l=homepage.href=https://bazarr.${vars.domainName}"
         "-l=homepage.description=Speedtest tracker"
         "-l=homepage.widget.type=speedtest"
-        "-l=homepage.widget.url=http://192.168.1.5:8765"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8765"
       ];
 
       volumes = [ "speedtest:/config" ];

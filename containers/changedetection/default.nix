@@ -1,3 +1,4 @@
+{ vars, ... }:
 {
   virtualisation.oci-containers.containers = {
     changedetection = {
@@ -8,7 +9,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Changedetection"
         "-l=homepage.icon=changedetection-io.png"
-        "-l=homepage.href=http://192.168.1.5:5000"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:5000"
         "-l=homepage.description=Website change detection"
       ];
       ports = [ "5000:5000" ];
