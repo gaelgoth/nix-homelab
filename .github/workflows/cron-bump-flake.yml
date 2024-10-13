@@ -1,0 +1,29 @@
+name: Bump flake.lock
+on:
+  schedule:
+    # Run every Saturday at 5:00 AM Swiss time (CET/CEST)
+    - cron: "0 3 * * 6"
+  workflow_dispatch: null
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: cachix/install-nix-action@v30
+
+      - run: nix flake update
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(deps): bump flake.lock"
+          commit_user_name: Flake Bot
+          commit_options: --no-verify --signoff
+          commit_author: Flake Bot <actions@github.com>
+          branch: main
+          file_pattern: flake.lock
+          skip_dirty_check: false
+          skip_fetch: true
