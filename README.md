@@ -124,4 +124,5 @@ nixfmt configuration.nix
 
 ## References
 
-- https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146
+- `nixos-anywhere` with ARM Mac: https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146
+- Set up `sops-nix`: https://www.youtube.com/watch?v=G5f6GC7SnhU&t=1s
