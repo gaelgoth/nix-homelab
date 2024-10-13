@@ -1,5 +1,4 @@
-{ vars, ... }:
-{
+{ vars, ... }: {
   virtualisation.oci-containers.containers = {
     changedetection = {
       image = "ghcr.io/dgtlmoon/changedetection.io:latest";

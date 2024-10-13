@@ -23,10 +23,10 @@ let
       text = builtins.readFile ./widgets.yaml;
     };
   };
-    homepageCustomCss = pkgs.writeTextFile {
-      name = "custom.css";
-      text = builtins.readFile ./custom.css;
-    };
+  homepageCustomCss = pkgs.writeTextFile {
+    name = "custom.css";
+    text = builtins.readFile ./custom.css;
+  };
 in {
 
   environment.systemPackages = with pkgs; [ glances ];
