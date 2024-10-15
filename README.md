@@ -4,6 +4,8 @@
 
 ### TODOs
 
+- Use https://github.com/nlewo/comin for auto update
+
 ### Install NixOS VM
 
 - Virtual ISO Link: https://nixos.org/download/#nixos-iso
