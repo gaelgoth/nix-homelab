@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [".*\\.nix$"],
+      "matchStrings": [
+        "image\\s*=\\s*\"(?<depName>[\\w./-]+):(?<currentValue>[\\w.-]+)\""
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
   ]
 }
