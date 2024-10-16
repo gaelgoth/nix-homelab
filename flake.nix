@@ -25,16 +25,17 @@
         vscode-server.nixosModules.default
         sops-nix.nixosModules.sops
 
-          comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/gaelgoth/nix-homelab.git";
-                branches.main.name = "main";
-              }];
-            };})
+        comin.nixosModules.comin
+        ({ ... }: {
+          services.comin = {
+            enable = true;
+            remotes = [{
+              name = "origin";
+              url = "https://github.com/gaelgoth/nix-homelab.git";
+              branches.main.name = "main";
+            }];
+          };
+        })
 
         ./configuration.nix
 
