@@ -5,6 +5,7 @@
 ### TODOs
 
 - Use https://github.com/nlewo/comin for auto update
+- or use a cron script https://discourse.nixos.org/t/ci-cd-rebuilds-via-github/36059/6
 
 ### Install NixOS VM
 
