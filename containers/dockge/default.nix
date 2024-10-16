@@ -6,7 +6,7 @@
       extraOptions = [
         "--pull=newer"
         "-l=homepage.group=System"
-        "-l=homepage.name=dockge (main agent)"
+        "-l=homepage.name=dockge - main agent"
         "-l=homepage.icon=dockge.svg"
         "-l=homepage.href=http://${vars.homelabStaticIp}:5001"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
