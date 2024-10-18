@@ -25,7 +25,7 @@ in {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
-    hostName = "nixos";
+    hostName = "nixos-homelab-vm";
     firewall.enable = true;
 
     interfaces.ens3.useDHCP = false;
