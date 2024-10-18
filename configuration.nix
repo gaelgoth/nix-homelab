@@ -15,7 +15,10 @@ in {
     defaultSopsFormat = "yaml";
   };
 
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {
+    allowUnfree = true;
+    system = "x86_64-linux";
+  };
 
   boot.loader.grub = {
     efiSupport = true;

@@ -125,6 +125,16 @@ nixfmt --version
 nixfmt configuration.nix
 ```
 
+## Debug
+
+```sh
+# auto upgrade
+systemctl start nixos-upgrade.service
+systemctl status nix-gc
+systemctl status nixos-upgrade
+
+```
+
 ## References
 
 - `nixos-anywhere` with ARM Mac: https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146
