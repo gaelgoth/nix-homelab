@@ -32,7 +32,7 @@
             remotes = [{
               name = "origin";
               url = "https://github.com/gaelgoth/nix-homelab.git";
-              branches.main.name = "main";
+              # branches.main.name = "main";
             }];
           };
         })
