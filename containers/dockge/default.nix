@@ -6,8 +6,8 @@
       extraOptions = [
         "--pull=newer"
         "-l=homepage.group=System"
-        "-l=homepage.name=dockge - main agent (nix-homelab-vm)"
-        "-l=homepage.icon=dockge.svg"
+        "-l=homepage.name=dockge - main agent (nix-homelab-vm) v2"
+        "-l=homepage.icon=dockge.png"
         "-l=homepage.href=http://${vars.homelabStaticIp}:5001"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Containers logs"
