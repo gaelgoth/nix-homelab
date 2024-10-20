@@ -1,17 +1,10 @@
-name: Update flake.lock
-run-name: Update flake.lock ${{ github.event.head_commit.message }}
+name: cron Update flake.lock
+
 on:
   schedule:
     # Run every day at 5:00 AM Swiss time (CET/CEST)
     - cron: "0 3 * * *"
   workflow_dispatch: null
-  push:
-    branches:
-      - main
-
-concurrency:
-  group: "update-flake-lock"
-  cancel-in-progress: true
 
 jobs:
   build:
