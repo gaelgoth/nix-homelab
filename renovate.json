@@ -13,5 +13,14 @@
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true,
+      "automergeType": "pr",
+      "matchManagers": ["regex"],
+      "description": "Auto-merge patch and minor containers"
+    }
   ]
 }
