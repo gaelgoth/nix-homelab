@@ -4,6 +4,13 @@ on:
     # Run every day at 5:00 AM Swiss time (CET/CEST)
     - cron: "0 3 * * *"
   workflow_dispatch: null
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: "update-flake-lock"
+  cancel-in-progress: true
 
 jobs:
   build:
