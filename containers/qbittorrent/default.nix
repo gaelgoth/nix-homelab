@@ -15,7 +15,7 @@
         "-l=homepage.description=Torrent Client"
         "-l=homepage.widget.type=qbittorrent"
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8080"
-        "-l=homepage.widget.username={{HOMEPAGE_FILE_QBITTORENT_USERNAME}}"
+        "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_QBITTORENT_PASSWORD}}"
       ];
       volumes = [

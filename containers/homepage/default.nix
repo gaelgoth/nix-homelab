@@ -43,6 +43,7 @@ in {
   };
 
   sops.secrets.sonarr-api-key = { };
+  sops.secrets.qbittorrent-admin-password = { };
 
   virtualisation.oci-containers = {
     containers = {
@@ -59,6 +60,8 @@ in {
           "${homepageSettings.widgets}:/app/config/widgets.yaml"
           "${homepageCustomCss}:/app/config/custom.css"
           "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
+          "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
+
           "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
         ];
         ports = [ "3001:3000" ];
@@ -67,8 +70,10 @@ in {
           #   HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
           #   HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
           #   HOMEPAGE_FILE_JELLYFIN_KEY = "/app/config/jellyfin.key";
-          DEBUG_SECRET = "TEST_API_KEY";
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
+          HOMEPAGE_FILE_QBITTORENT_KEY =
+            "/app/config/qbittorrent-admin-password.key";
+
         };
         environmentFiles = [ config.sops.secrets.sonarr-api-key.path ];
       };
