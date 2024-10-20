@@ -141,6 +141,8 @@ nixfmt configuration.nix
 systemctl start nixos-upgrade.service
 systemctl status nix-gc
 systemctl status nixos-upgrade
+
+journalctl -u nixos-upgrade.service
 ```
 
 ## References
