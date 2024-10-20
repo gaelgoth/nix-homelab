@@ -97,6 +97,15 @@ mkdir secret
 sops secrets.yaml
 ```
 
+### Git SSH key
+
+```sh
+mkdir ~/.ssh
+cd  ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "nix@homelab.lan"
+
+```
+
 ### Rebuild config
 
 - SSH into server
@@ -132,7 +141,6 @@ nixfmt configuration.nix
 systemctl start nixos-upgrade.service
 systemctl status nix-gc
 systemctl status nixos-upgrade
-
 ```
 
 ## References
