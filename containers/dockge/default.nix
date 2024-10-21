@@ -17,12 +17,16 @@
         "-l=homepage.widget.user=TODO"
       ];
       volumes = [
-        "/mnt/documents/dockge/opt/stacks"
+        "dockge-data:/app/data"
+        "/mnt/documents/dockge/stacks:/mnt/documents/dockge/stacks"
         "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
       ];
 
       ports = [ "5001:5001" ];
-      environment = { TZ = vars.timeZone; };
+      environment = {
+        TZ = vars.timeZone;
+        DOCKGE_STACKS_DIR = "/mnt/documents/dockge/stacks";
+      };
     };
   };
 }
