@@ -125,7 +125,7 @@ Build:
 nix-env -iA nixpkgs.sops
 
 # install nixfmt globally
-nix-env -iA nixpkgs.nixfmt
+nix-env -iA nixpkgs.nixfmt-rfc-style
 
 # Test
 nixfmt --version

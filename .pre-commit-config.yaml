@@ -1,0 +1,35 @@
+repos:
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args:
+          - -L Foto,comin
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: debug-statements
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.3
+    hooks:
+      - id: actionlint
+        args:
+          - -shellcheck=
+
+  # - repo: https://github.com/NixOS/nixfmt # TODO: Fix this error on mac ; An unexpected error has occurred: CalledProcessError: command: ('cabal', 'update')
+  #   rev: master
+  #   hooks:
+  #     - id: nixfmt
