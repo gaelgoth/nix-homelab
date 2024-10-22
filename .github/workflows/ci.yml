@@ -20,7 +20,8 @@ jobs:
     name: 🧪 nix validations
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v30
 
-      - name: nix flake update
-        run: nix flake update
+      - name: nix flake check
+        run: nix flake check
