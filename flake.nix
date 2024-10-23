@@ -29,6 +29,7 @@
         ./containers/changedetection
         ./containers/dockge
         ./containers/dozzle
+        ./containers/flaresolverr
         ./containers/grafana
         ./containers/handbrake
         ./containers/homepage
