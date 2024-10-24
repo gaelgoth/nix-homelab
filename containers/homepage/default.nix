@@ -42,8 +42,10 @@ in {
     };
   };
 
-  sops.secrets.sonarr-api-key = { };
+  sops.secrets.prowlarr-api-key = { };
   sops.secrets.qbittorrent-admin-password = { };
+  sops.secrets.radarr-api-key = { };
+  sops.secrets.sonarr-api-key = { };
 
   virtualisation.oci-containers = {
     containers = {
@@ -59,17 +61,20 @@ in {
           "${homepageSettings.settings}:/app/config/settings.yaml"
           "${homepageSettings.widgets}:/app/config/widgets.yaml"
           "${homepageCustomCss}:/app/config/custom.css"
-          "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
+
+          "${config.sops.secrets.prowlarr-api-key.path}:/app/config/prowlarr.key"
           "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
+          "${config.sops.secrets.radarr-api-key.path}:/app/config/radarr.key"
+          "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
 
           "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
         ];
         ports = [ "3001:3000" ];
         environment = {
           TZ = vars.timeZone;
-          #   HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
-          #   HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
-          #   HOMEPAGE_FILE_JELLYFIN_KEY = "/app/config/jellyfin.key";
+
+          HOMEPAGE_FILE_PROWLARR_KEY = "/app/config/prowlarr.key";
+          HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
           HOMEPAGE_FILE_QBITTORENT_KEY =
             "/app/config/qbittorrent-admin-password.key";
