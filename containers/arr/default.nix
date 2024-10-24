@@ -62,7 +62,12 @@
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8989"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_SONARR_KEY}}"
       ];
-      volumes = [ "sonarr-config:/config" "${vars.mediaPath}/Shows:/tv" ];
+      volumes = [
+        "sonarr-config:/config"
+        "${vars.mediaPath}/Shows:/tv"
+        "${vars.mediaPath}/torrent:/downloads"
+
+      ];
       ports = [ "8989:8989" ];
       environment = { TZ = vars.timeZone; };
     };
@@ -83,7 +88,11 @@
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:7878"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_RADARR_KEY}}"
       ];
-      volumes = [ "radarr-config:/config" "${vars.mediaPath}/Movies:/Movies" ];
+      volumes = [
+        "radarr-config:/config"
+        "${vars.mediaPath}/Movies:/Movies"
+        "${vars.mediaPath}/torrent:/downloads"
+      ];
       ports = [ "7878:7878" ];
       environment = { TZ = vars.timeZone; };
     };
