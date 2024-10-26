@@ -1,11 +1,11 @@
-# - Media: []
+- Media: []
 
-# - Services:
-#   - Synology Photos:
-#         icon: synology-photos.png
-#         href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
+- Services:
+    - Synology Photos:
+        icon: synology-photos.png
+        href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
 
-# - System: []
+- System: []
 
 - Server:
     - Info:
@@ -14,11 +14,6 @@
           version: 4
           url: http://192.168.1.5:61208
           metric: info
-    # - CPU Temp:
-    #     widget:
-    #       type: glances
-    #       url: http://192.168.1.5:61208
-    #       metric: sensor:Tctl
     - Process:
         widget:
           type: glances
@@ -26,9 +21,3 @@
           url: http://192.168.1.5:61208
           metric: process
           chart: ifn
-    # - Network:
-    #     widget:
-    #       type: glances
-    #       url: http://192.168.1.5:61208
-    #       metric: network:enp1s0f0
-    #       chart: true
