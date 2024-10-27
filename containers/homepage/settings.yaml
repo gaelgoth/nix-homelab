@@ -3,6 +3,19 @@ showStats: false
 statusStyle: "dot"
 
 quicklaunch:
-    searchDescriptions: true
-    hideInternetSearch: true
-    hideVisitURL: true
+  searchDescriptions: true
+  hideInternetSearch: true
+  hideVisitURL: true
+
+layout:
+  - Glances:
+      header: false
+      style: "row"
+      columns: 3
+  - Media:
+  - Services:
+  - System:
+  - Server:
+      header: false
+      style: "row"
+      columns: 3

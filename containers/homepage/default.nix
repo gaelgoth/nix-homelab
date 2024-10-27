@@ -42,6 +42,8 @@ in {
     };
   };
 
+  sops.secrets.jellyfin-api-key = { };
+  sops.secrets.jellyseerr-api-key = { };
   sops.secrets.prowlarr-api-key = { };
   sops.secrets.qbittorrent-admin-password = { };
   sops.secrets.radarr-api-key = { };
@@ -62,6 +64,8 @@ in {
           "${homepageSettings.widgets}:/app/config/widgets.yaml"
           "${homepageCustomCss}:/app/config/custom.css"
 
+          "${config.sops.secrets.jellyfin-api-key.path}:/app/config/jellyfin.key"
+          "${config.sops.secrets.jellyseerr-api-key.path}:/app/config/jellyseer.key"
           "${config.sops.secrets.prowlarr-api-key.path}:/app/config/prowlarr.key"
           "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
           "${config.sops.secrets.radarr-api-key.path}:/app/config/radarr.key"
@@ -73,6 +77,8 @@ in {
         environment = {
           TZ = vars.timeZone;
 
+          HOMEPAGE_FILE_JELLYFIN_KEY = "/app/config/jellyfin.key";
+          HOMEPAGE_FILE_JELLYSEERR_KEY = "/app/config/jellyseer.key";
           HOMEPAGE_FILE_PROWLARR_KEY = "/app/config/prowlarr.key";
           HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
