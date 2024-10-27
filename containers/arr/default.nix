@@ -15,7 +15,7 @@
         "-l=homepage.description=Discover and request media"
         "-l=homepage.widget.type=jellyseerr"
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:5055"
-        "-l=homepage.widget.key={{HOMEPAGE_FILE_JELLYSEERR_KEY}"
+        "-l=homepage.widget.key={{HOMEPAGE_FILE_JELLYSEERR_KEY}}"
       ];
       volumes = [ "jellyseerr-config:/app/config" ];
       ports = [ "5055:5055" ];
