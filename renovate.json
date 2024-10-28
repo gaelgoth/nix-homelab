@@ -18,6 +18,9 @@
     {
       "matchUpdateTypes": ["patch", "minor"],
       "automerge": true,
+      "schedule": [
+        "before 4am"
+      ],
       "matchManagers": ["regex"],
       "description": "Auto-merge patch and minor containers"
     }
