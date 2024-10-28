@@ -39,6 +39,7 @@
         ./containers/speedtest
         ./containers/stirlingpdf
         ./containers/uptimekuma
+        ./containers/watchtower
 
         # ./containers/jellyfin
 
