@@ -42,6 +42,7 @@ in {
     };
   };
 
+  sops.secrets.bazarr-api-key = { };
   sops.secrets.jellyfin-api-key = { };
   sops.secrets.jellyseerr-api-key = { };
   sops.secrets.prowlarr-api-key = { };
@@ -64,6 +65,7 @@ in {
           "${homepageSettings.widgets}:/app/config/widgets.yaml"
           "${homepageCustomCss}:/app/config/custom.css"
 
+          "${config.sops.secrets.bazarr-api-key.path}:/app/config/bazarr.key"
           "${config.sops.secrets.jellyfin-api-key.path}:/app/config/jellyfin.key"
           "${config.sops.secrets.jellyseerr-api-key.path}:/app/config/jellyseer.key"
           "${config.sops.secrets.prowlarr-api-key.path}:/app/config/prowlarr.key"
@@ -78,6 +80,7 @@ in {
         environment = {
           TZ = vars.timeZone;
 
+          HOMEPAGE_FILE_BAZARR_KEY = "/app/config/bazarr.key";
           HOMEPAGE_FILE_JELLYFIN_KEY = "/app/config/jellyfin.key";
           HOMEPAGE_FILE_JELLYSEERR_KEY = "/app/config/jellyseer.key";
           HOMEPAGE_FILE_PROWLARR_KEY = "/app/config/prowlarr.key";
