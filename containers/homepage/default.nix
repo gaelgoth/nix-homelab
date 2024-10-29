@@ -70,6 +70,7 @@ in {
           "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
           "${config.sops.secrets.radarr-api-key.path}:/app/config/radarr.key"
           "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
+          "${config.sops.secrets.watchtower-api-key.path}:/app/config/watchtower.key"
 
           "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
         ];
@@ -84,7 +85,7 @@ in {
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
           HOMEPAGE_FILE_QBITTORENT_KEY =
             "/app/config/qbittorrent-admin-password.key";
-
+          HOMEPAGE_FILE_WATCHTOWER_KEY = "/app/config/watchtower.key";
         };
         environmentFiles = [ config.sops.secrets.sonarr-api-key.path ];
       };
