@@ -14,6 +14,8 @@
         # "-l=homepage.href=https://bazarr.${vars.domainName}"
         "-l=homepage.description=Torrent Client"
         "-l=homepage.widget.type=qbittorrent"
+        "-l=homepage.weight=8"
+
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:8080"
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_QBITTORENT_KEY}}"
