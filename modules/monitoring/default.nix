@@ -1,4 +1,14 @@
 { config, ... }: {
+  networking.firewall.allowedTCPPorts = [ 2342 ];
+
+  services.grafana = {
+    enable = true;
+    domain = "localhost";
+    port = 2342;
+    addr =
+      ""; # listen (bind) to all network interfaces (i.e. 127.0.0.1, and ipAddress)
+  };
+
   services.prometheus = {
     scrapeConfigs = [{
       job_name = "node";

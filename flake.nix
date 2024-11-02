@@ -30,7 +30,7 @@
         ./containers/dockge
         ./containers/dozzle
         ./containers/flaresolverr
-        ./containers/grafana
+        # ./containers/grafana
         ./containers/handbrake
         ./containers/homepage
         ./containers/neko
