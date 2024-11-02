@@ -10,6 +10,10 @@
         "-l=homepage.icon=changedetection-io.png"
         "-l=homepage.href=http://${vars.homelabStaticIp}:5000"
         "-l=homepage.description=Website change detection"
+
+        "-l=homepage.widget.type=changedetectionio"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:5000"
+        "-l=homepage.widget.key={{HOMEPAGE_FILE_CHANGEDETECTION_KEY}}"
       ];
       ports = [ "5000:5000" ];
       volumes = [ "changedetection-data:/datastore" ];
@@ -37,10 +41,4 @@
       };
     };
   };
-
-  #   volumes = {
-  #     "changedetection-data" = {
-  #       external = false;
-  #     };
-  #   };
 }

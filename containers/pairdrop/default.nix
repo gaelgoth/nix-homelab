@@ -10,7 +10,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=PairDrop"
         "-l=homepage.icon=snapdrop.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:3000"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:3021"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Send files over the local network"
       ];
