@@ -11,12 +11,15 @@
         "-l=homepage.name=meTube"
         "-l=homepage.icon=metube.svg"
         "-l=homepage.href=http://${vars.homelabStaticIp}:3024"
-        # "-l=homepage.href=https://jellyseer.${vars.domainName}"
+                # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Streaming downloader (Youtube, SoundCloud, Reddit,...)"
+
       ];
-      volumes =
-        [ "handbrake-config:/config" "${vars.mediaPath}/downloads:/downloads" ];
-      ports = [ "3024:8081" ];
+
+      volumes = [
+        "${vars.mediaPath}/downloads:/downloads"
+      ];
+      ports = [ "3025:8081" ];
       environment = { TZ = vars.timeZone; };
     };
   };

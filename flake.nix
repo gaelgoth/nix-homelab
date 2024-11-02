@@ -40,8 +40,8 @@
         ./containers/stirlingpdf
         ./containers/uptimekuma
         ./containers/watchtower
-        # ./containers/grafana
 
+        # ./containers/grafana # installed via nix package
         # ./containers/jellyfin
 
         ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
