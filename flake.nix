@@ -30,9 +30,9 @@
         ./containers/dockge
         ./containers/dozzle
         ./containers/flaresolverr
-        # ./containers/grafana
         ./containers/handbrake
         ./containers/homepage
+        ./containers/metube
         ./containers/neko
         ./containers/pairdrop
         ./containers/qbittorrent
@@ -40,6 +40,7 @@
         ./containers/stirlingpdf
         ./containers/uptimekuma
         ./containers/watchtower
+        # ./containers/grafana
 
         # ./containers/jellyfin
 
