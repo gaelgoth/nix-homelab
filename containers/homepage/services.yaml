@@ -13,7 +13,18 @@
         icon: synology-photos.png
         href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
 
-- System: []
+- System:
+    - Grafana:
+        icon: grafana.png
+        href: http://192.168.1.5:2342
+        statusStyle: dot
+        description: Monitoring dashboards
+        widget:
+            type: grafana
+            url: http://192.168.1.5:2342
+            fields: ["dashboards","datasources"]
+            username: admin
+            password: "{{HOMEPAGE_FILE_GRAFANA_KEY}}"
 
 - Server:
     - Info:
