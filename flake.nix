@@ -25,6 +25,7 @@
 
         ./modules/monitoring
 
+        ./containers/adguardhome
         ./containers/arr
         ./containers/changedetection
         ./containers/dockge
