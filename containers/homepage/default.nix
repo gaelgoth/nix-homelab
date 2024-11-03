@@ -51,6 +51,7 @@ in {
   sops.secrets.qbittorrent-admin-password = { };
   sops.secrets.radarr-api-key = { };
   sops.secrets.sonarr-api-key = { };
+  sops.secrets.watchtower-api-key = { };
 
   virtualisation.oci-containers = {
     containers = {
