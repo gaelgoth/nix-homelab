@@ -39,7 +39,7 @@
         ./containers/speedtest
         ./containers/stirlingpdf
         ./containers/uptimekuma
-        ./containers/watchtower
+        # ./containers/watchtower
 
         # ./containers/grafana # installed via nix package
         # ./containers/jellyfin
