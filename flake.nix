@@ -35,6 +35,7 @@
         ./containers/homepage
         ./containers/metube
         ./containers/neko
+        ./containers/nginxproxymanager
         ./containers/pairdrop
         ./containers/qbittorrent
         ./containers/speedtest
