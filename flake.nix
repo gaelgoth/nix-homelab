@@ -24,6 +24,7 @@
         ./configuration.nix
 
         ./modules/monitoring
+        ./modules/tailscale
 
         ./containers/adguardhome
         ./containers/arr
