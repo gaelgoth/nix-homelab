@@ -15,6 +15,7 @@
     scrapeConfigs = [
       {
         job_name = "node";
+         scrape_interval = "15s";
         static_configs = [{
           targets = [
             "127.0.0.1:${
