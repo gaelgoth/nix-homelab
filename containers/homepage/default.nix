@@ -42,8 +42,8 @@ in {
     };
   };
 
-  sops.secrets.changedetection-api-key = { };
   sops.secrets.bazarr-api-key = { };
+  sops.secrets.changedetection-api-key = { };
   sops.secrets.grafana-password = { };
   sops.secrets.jellyfin-api-key = { };
   sops.secrets.jellyseerr-api-key = { };
@@ -51,6 +51,7 @@ in {
   sops.secrets.qbittorrent-admin-password = { };
   sops.secrets.radarr-api-key = { };
   sops.secrets.sonarr-api-key = { };
+  sops.secrets.synology-dsm-service-account-password = { };
   sops.secrets.watchtower-api-key = { };
 
   virtualisation.oci-containers = {
@@ -77,6 +78,7 @@ in {
           "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
           "${config.sops.secrets.radarr-api-key.path}:/app/config/radarr.key"
           "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
+          "${config.sops.secrets.synology-dsm-service-account-password.path}:/app/config/synology.key"
           "${config.sops.secrets.watchtower-api-key.path}:/app/config/watchtower.key"
 
           "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
@@ -95,6 +97,7 @@ in {
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
           HOMEPAGE_FILE_QBITTORENT_KEY =
             "/app/config/qbittorrent-admin-password.key";
+          HOMEPAGE_FILE_SYNOLOGY_KEY = "/app/config/synology.key";
           HOMEPAGE_FILE_WATCHTOWER_KEY = "/app/config/watchtower.key";
         };
         environmentFiles = [ config.sops.secrets.sonarr-api-key.path ];

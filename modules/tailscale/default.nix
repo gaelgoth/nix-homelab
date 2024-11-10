@@ -7,10 +7,7 @@
   networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
   networking.firewall.allowedTCPPorts = [ config.services.tailscale.port ];
 
-
-
-
-systemd.services.tailscale-autoconnect = {
+  systemd.services.tailscale-autoconnect = {
     description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale

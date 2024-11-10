@@ -26,7 +26,16 @@
             fields: ["dashboards","datasources"]
             username: admin
             password: "{{HOMEPAGE_FILE_GRAFANA_KEY}}"
-
+    - Synology DSM 7:
+        icon: synology-dsm.png
+        href: https://nas.homelab.gothuey.dev
+        widget:
+            type: diskstation
+            url: https://192.168.1.2:901
+            fields: ["volumeAvailable", "resources.cpu", "resources.mem"]
+            username: service_account
+            password: "{{HOMEPAGE_FILE_SYNOLOGY_KEY}}"
+            volume: volume_1
 - Server:
     - Info:
         widget:
