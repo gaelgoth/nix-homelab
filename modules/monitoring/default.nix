@@ -49,7 +49,15 @@
           }
         ];
       }
-
+      {
+        job_name = "adguard";
+        scrape_interval = "15s";
+        static_configs = [{
+          targets = [
+            "127.0.0.1:9618"
+          ];
+        }];
+      }
     ];
     enable = true;
     port = 9001;
