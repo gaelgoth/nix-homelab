@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ config, vars, ... }: {
   networking.firewall.allowedTCPPorts = [
     3000 # API
     3004 # WebUI
@@ -21,6 +21,8 @@
     8853 # DNS-over-TLS (DoT)
   ];
 
+  sops.secrets.ADGUARD_PASSWORDS = { };
+
   virtualisation.oci-containers.containers = {
     adguardhome = {
       image = "adguard/adguardhome:v0.107.54";
@@ -35,15 +37,34 @@
         "-l=homepage.href=http://${vars.homelabStaticIp}:3004"
         "-l=homepage.description=Ads Blocker"
 
-        # "-l=homepage.widget.type=changedetectionio"
-        # "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3000"
-        # "-l=homepage.widget.key={{HOMEPAGE_FILE_CHANGEDETECTION_KEY}}"
+        "-l=homepage.widget.type=adguard"
+        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3004"
+        "-l=homepage.widget.username=admin"
+        "-l=homepage.widget.password={{HOMEPAGE_FILE_ADGUARDHOME_KEY}}"
       ];
-      # Expose ports
+      environment = { TZ = vars.timeZone; };
       volumes = [
         "adguardhome-work-data:/opt/adguardhome/work"
         "adguardhome-conf-data:/opt/adguardhome/conf"
       ];
+    };
+
+    adguardhome-exporter = {
+      image = "ghcr.io/henrywhitaker3/adguard-exporter:v1.1.16";
+      autoStart = true;
+      extraOptions = [ "--pull=newer" ];
+      # Expose ports
+      ports = [ "9618:9618" ];
+
+      environmentFiles = [ config.sops.secrets.ADGUARD_PASSWORDS.path ];
+
+      environment = {
+        TZ = vars.timeZone;
+        ADGUARD_SERVERS = "http://${vars.homelabStaticIp}:3004";
+        ADGUARD_USERNAMES = "admin";
+        DEBUG = "true";
+        INTERVAL = "15s";
+      };
     };
   };
 }

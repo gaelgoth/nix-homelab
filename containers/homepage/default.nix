@@ -42,6 +42,7 @@ in {
     };
   };
 
+  sops.secrets.adguardhome-password = { };
   sops.secrets.bazarr-api-key = { };
   sops.secrets.changedetection-api-key = { };
   sops.secrets.grafana-password = { };
@@ -69,6 +70,7 @@ in {
           "${homepageSettings.widgets}:/app/config/widgets.yaml"
           "${homepageCustomCss}:/app/config/custom.css"
 
+          "${config.sops.secrets.adguardhome-password.path}:/app/config/adguardhome.key"
           "${config.sops.secrets.changedetection-api-key.path}:/app/config/changedetection.key"
           "${config.sops.secrets.bazarr-api-key.path}:/app/config/bazarr.key"
           "${config.sops.secrets.grafana-password.path}:/app/config/grafana.key"
@@ -87,6 +89,7 @@ in {
         environment = {
           TZ = vars.timeZone;
 
+          HOMEPAGE_FILE_ADGUARDHOME_KEY = "/app/config/adguardhome.key";
           HOMEPAGE_FILE_CHANGEDETECTION_KEY = "/app/config/changedetection.key";
           HOMEPAGE_FILE_BAZARR_KEY = "/app/config/bazarr.key";
           HOMEPAGE_FILE_GRAFANA_KEY = "/app/config/grafana.key";
