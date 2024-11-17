@@ -9,12 +9,8 @@
         "-l=homepage.name=dozzle"
         "-l=homepage.icon=dozzle.svg"
         "-l=homepage.href=http://${vars.homelabStaticIp}:3024"
-        # "-l=homepage.href=https://jellyseer.${vars.domainName}"
+        # "-l=homepage.href=https://dozzle.${vars.domainName}"
         "-l=homepage.description=Containers logs"
-        "-l=homepage.widget.type=dozzle"
-        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3024"
-        "-l=homepage.widget.user=admin"
-        "-l=homepage.widget.user=TODO"
       ];
       volumes = [ "/var/run/podman/podman.sock:/var/run/docker.sock:ro" ];
 

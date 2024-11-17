@@ -40,7 +40,7 @@
         "-l=homepage.weight=3"
 
         "-l=homepage.widget.type=prowlarr"
-        "-l=homepage.widget.fields=['numberOfGrabs', 'numberOfQueries']"
+        # "-l=homepage.widget.fields=['numberOfGrabs', 'numberOfQueries']"
         "-l=homepage.widget.url=http://${vars.homelabStaticIp}:9696"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_PROWLARR_KEY}}"
       ];
