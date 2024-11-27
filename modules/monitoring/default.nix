@@ -96,12 +96,10 @@
             instance = "homelab.local";
           };
         };
-        relabel_configs = [
-          {
-            source_labels = [ "__journal__systemd_unit" ];
-            target_label = "unit";
-          }
-        ];
+        relabel_configs = [{
+          source_labels = [ "__journal__systemd_unit" ];
+          target_label = "unit";
+        }];
       }];
     };
     # extraFlags

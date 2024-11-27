@@ -118,6 +118,12 @@ in {
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
   # inspo: https://github.com/reckenrode/nixos-configs/blob/main/hosts/meteion/configuration.nix
   system.autoUpgrade = {
     enable = true;
