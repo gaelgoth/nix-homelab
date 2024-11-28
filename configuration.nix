@@ -118,6 +118,11 @@ in {
     };
   };
 
+  nix.optimise = {
+    automatic = true;
+    dates =  [ "Sun 03:00" ];
+  };
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
