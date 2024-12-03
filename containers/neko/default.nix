@@ -20,7 +20,7 @@
         NEKO_PASSWORD_ADMIN = "admin";
         NEKO_EPR = "52000-52100";
         NEKO_ICELITE = "0";
-        NEKO_NAT1TO1 = "192.168.1.5";
+        NEKO_NAT1TO1 = vars.homelabStaticIp;
       };
     };
   };
