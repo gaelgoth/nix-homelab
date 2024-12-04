@@ -1,7 +1,7 @@
 { vars, ... }: {
   virtualisation.oci-containers.containers = {
     changedetection = {
-      image = "ghcr.io/dgtlmoon/changedetection.io:0.47.06";
+      image = "ghcr.io/dgtlmoon/changedetection.io:0.48.01";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
