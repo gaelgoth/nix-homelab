@@ -52,6 +52,10 @@ in {
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled =
         false; # disable to allow :53 for adguardhome
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+      };
     };
   };
 
@@ -120,7 +124,7 @@ in {
 
   nix.optimise = {
     automatic = true;
-    dates =  [ "Sun 03:00" ];
+    dates = [ "Sun 03:00" ];
   };
 
   nix.gc = {
