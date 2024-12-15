@@ -126,7 +126,7 @@ in {
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 15d";
+    options = "--delete-older-than 3d";
   };
 
   # inspo: https://github.com/reckenrode/nixos-configs/blob/main/hosts/meteion/configuration.nix
