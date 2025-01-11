@@ -42,6 +42,7 @@
         ./containers/speedtest
         ./containers/stirlingpdf
         ./containers/uptimekuma
+        ./containers/wallos
         # ./containers/watchtower
 
         # ./containers/grafana # installed via nix package
