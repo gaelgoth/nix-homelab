@@ -9,7 +9,7 @@
         "--pull=newer"
         "-l=homepage.group=Services"
         "-l=homepage.name=wallos"
-        "-l=homepage.icon=todo.svg" # TOOD: Set icon
+        "-l=homepage.icon=wallos.png" # TODO: Set icon
         "-l=homepage.href=http://${vars.homelabStaticIp}:8282"
         # "-l=homepage.href=https://kuma.${vars.domainName}"
         # "-l=homepage.description=Website Monitoring"
