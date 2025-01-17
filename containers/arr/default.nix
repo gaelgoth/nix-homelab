@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     jellyseerr = {
-      image = "fallenbagel/jellyseerr:2.2.3";
+      image = "fallenbagel/jellyseerr:2.3.0";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
