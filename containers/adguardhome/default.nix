@@ -25,7 +25,7 @@
 
   virtualisation.oci-containers.containers = {
     adguardhome = {
-      image = "adguard/adguardhome:v0.107.55";
+      image = "adguard/adguardhome:v0.107.56";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
