@@ -7,7 +7,7 @@
         "--pull=newer"
         "-l=homepage.group=Services"
         "-l=homepage.name=Changedetection"
-        "-l=homepage.icon=changedetection-io.png"
+        "-l=homepage.icon=changedetection.svg"
         "-l=homepage.href=http://${vars.homelabStaticIp}:5000"
         "-l=homepage.description=Website change detection"
 
