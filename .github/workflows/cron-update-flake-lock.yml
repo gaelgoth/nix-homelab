@@ -2,9 +2,9 @@ name: cron Update flake.lock
 
 on:
   schedule:
-    # Run every day at 5:00 AM Swiss time (CET/CEST)
+    # Run every day at 4:00 AM Swiss time (CET/CEST)
     - cron: "0 3 * * *"
-  workflow_dispatch: null
+  workflow_dispatch:
 
 jobs:
   build:
@@ -27,9 +27,9 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(deps): bump flake.lock"
-          commit_user_name: Flake Bot
+          commit_user_name: Flake Bot Update
           commit_options: --no-verify --signoff
-          commit_author: Flake Bot <actions@github.com>
+          commit_author: Flake Bot Update <actions@github.com>
           branch: main
           file_pattern: flake.lock
           skip_dirty_check: false
