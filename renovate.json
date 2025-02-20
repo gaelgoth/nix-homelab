@@ -22,6 +22,7 @@
         "before 3am"
       ],
       "matchManagers": ["regex"],
+      "groupName": "regex",
       "description": "Auto-merge patch and minor containers"
     }
   ]
