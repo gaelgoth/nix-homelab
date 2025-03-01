@@ -22,7 +22,7 @@
         "before 3am"
       ],
       "matchManagers": ["regex"],
-      "groupName": "regex",
+      "groupName": "homelab-containers",
       "description": "Auto-merge patch and minor containers"
     }
   ]
