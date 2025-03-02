@@ -22,7 +22,7 @@
       ports = [ "5055:5055" ];
       environment = {
         TZ = vars.timeZone;
-        LOG_LEVEL = "debug";
+        LOG_LEVEL = "info";
       };
     };
 
