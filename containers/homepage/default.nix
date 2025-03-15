@@ -89,6 +89,8 @@ in {
         environment = {
           TZ = vars.timeZone;
 
+          HOMEPAGE_ALLOWED_HOSTS = "${vars.homelabStaticIp}:3001,${vars.defaultDomain}";
+
           HOMEPAGE_FILE_ADGUARDHOME_KEY = "/app/config/adguardhome.key";
           HOMEPAGE_FILE_CHANGEDETECTION_KEY = "/app/config/changedetection.key";
           HOMEPAGE_FILE_BAZARR_KEY = "/app/config/bazarr.key";
