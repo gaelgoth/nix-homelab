@@ -32,10 +32,10 @@
         ./containers/dockge
         ./containers/dozzle
         ./containers/flaresolverr
+        ./containers/glance
         ./containers/handbrake
         ./containers/homepage
         ./containers/metube
-        # ./containers/neko
         ./containers/nginxproxymanager
         ./containers/pairdrop
         ./containers/qbittorrent
@@ -43,6 +43,7 @@
         ./containers/stirlingpdf
         ./containers/uptimekuma
         ./containers/wallos
+        # ./containers/neko
         # ./containers/watchtower
 
         # ./containers/grafana # installed via nix package
