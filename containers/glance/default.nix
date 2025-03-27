@@ -31,7 +31,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       glance = {
-        image = "glanceapp/glance:v0.7.7";
+        image = "glanceapp/glance:v0.7.8";
         autoStart = true;
         extraOptions = [ "--pull=newer" ];
         volumes = [
