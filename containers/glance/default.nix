@@ -33,7 +33,13 @@ in {
       glance = {
         image = "glanceapp/glance:v0.8.3";
         autoStart = true;
-        extraOptions = [ "--pull=newer" ];
+        extraOptions = [
+          "--pull=newer"
+        "-l=homepage.group=Services"
+        "-l=homepage.name=Glance"
+        "-l=homepage.icon=glance.svg"
+        "-l=homepage.href=http://${vars.homelabStaticIp}:3027"
+        ];
         volumes = [
           "glance-config:/app/config"
           "${glanceSettings.docker}:/app/config/docker.yml"
