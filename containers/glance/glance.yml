@@ -12,9 +12,6 @@ pages:
     columns:
       - size: small
         widgets:
-          - type: calendar
-            first-day-of-week: monday
-
           - type: rss
             limit: 10
             collapse-after: 3
@@ -29,6 +26,277 @@ pages:
               - url: https://samwho.dev/rss.xml
               - url: https://ishadeed.com/feed.xml
                 title: Ahmad Shadeed
+
+          - type: custom-api
+            title: Next F1 Race
+            cache: 1h
+            url: https://f1api.dev/api/current/next?timezone=Europe/London
+            template: |
+              <div class="flex flex-column gap-10">
+                {{ $session := index (.JSON.Array "race") 0 }}
+                <p class="size-h5">
+                  Round {{ .JSON.String "round" }}
+                </p>
+
+                <div class="margin-block-4">
+                  <p class="color-highlight">{{ $session.String "raceName" }}</p>
+
+                  <div class="margin-block-10"></div>
+
+                  <!-- Race -->
+                  <p class="color-primary">
+                    <span>Race</span>
+                    {{ $raceDate := $session.String "schedule.race.date" }}
+                    {{ $raceTime := $session.String "schedule.race.time" }}
+                    {{ $raceDateTime := concat $raceDate "T" $raceTime }}
+                    {{ $parsedRaceTime := parseLocalTime "2006-01-02T15:04:05" $raceDateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedRaceTime.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedRaceTime | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $raceDate }} at {{ $raceTime }}</p>
+
+                  <!-- Qualifying -->
+                  <p class="color-primary">
+                    <span>Qualifying</span>
+                    {{ $qualyDate := $session.String "schedule.qualy.date" }}
+                    {{ $qualyTime := $session.String "schedule.qualy.time" }}
+                    {{ $qualyDateTime := concat $qualyDate "T" $qualyTime }}
+                    {{ $parsedQualyTime := parseLocalTime "2006-01-02T15:04:05" $qualyDateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedQualyTime.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedQualyTime | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $qualyDate }} at {{ $qualyTime }}</p>
+
+                  <!-- Free Practice 1 -->
+                  <p class="color-primary">
+                    <span>Free Practice 1</span>
+                    {{ $fp1Date := $session.String "schedule.fp1.date" }}
+                    {{ $fp1Time := $session.String "schedule.fp1.time" }}
+                    {{ $fp1DateTime := concat $fp1Date "T" $fp1Time }}
+                    {{ $parsedFP1Time := parseLocalTime "2006-01-02T15:04:05" $fp1DateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedFP1Time.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedFP1Time | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $fp1Date }} at {{ $fp1Time }}</p>
+
+                  <!-- Free Practice 2 -->
+                  <p class="color-primary">
+                    <span>Free Practice 2</span>
+                    {{ $fp2Date := $session.String "schedule.fp2.date" }}
+                    {{ $fp2Time := $session.String "schedule.fp2.time" }}
+                    {{ $fp2DateTime := concat $fp2Date "T" $fp2Time }}
+                    {{ $parsedFP2Time := parseLocalTime "2006-01-02T15:04:05" $fp2DateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedFP2Time.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedFP2Time | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $fp2Date }} at {{ $fp2Time }}</p>
+
+                  <!-- Free Practice 3 -->
+                  <p class="color-primary">
+                    <span>Free Practice 3</span>
+                    {{ $fp3Date := $session.String "schedule.fp3.date" }}
+                    {{ $fp3Time := $session.String "schedule.fp3.time" }}
+                    {{ $fp3DateTime := concat $fp3Date "T" $fp3Time }}
+                    {{ $parsedFP3Time := parseLocalTime "2006-01-02T15:04:05" $fp3DateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedFP3Time.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedFP3Time | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $fp3Date }} at {{ $fp3Time }}</p>
+
+                  <!-- Sprint Qualifying - only if date is not null -->
+                  {{ if and (ne ($session.String "schedule.sprintQualy.date") "null") (ne ($session.String "schedule.sprintQualy.date") "") }}
+                  <p class="color-primary">
+                    <span>Sprint Qualifying</span>
+                    {{ $sprintQualyDate := $session.String "schedule.sprintQualy.date" }}
+                    {{ $sprintQualyTime := $session.String "schedule.sprintQualy.time" }}
+                    {{ $sprintQualyDateTime := concat $sprintQualyDate "T" $sprintQualyTime }}
+                    {{ $parsedSprintQualyTime := parseLocalTime "2006-01-02T15:04:05" $sprintQualyDateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedSprintQualyTime.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedSprintQualyTime | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $sprintQualyDate }} at {{ $sprintQualyTime }}</p>
+                  {{ end }}
+
+                  <!-- Sprint Race - only if date is not null -->
+                  {{ if and (ne ($session.String "schedule.sprintRace.date") "null") (ne ($session.String "schedule.sprintRace.date") "") }}
+                  <p class="color-primary">
+                    <span>Sprint Race</span>
+                    {{ $sprintRaceDate := $session.String "schedule.sprintRace.date" }}
+                    {{ $sprintRaceTime := $session.String "schedule.sprintRace.time" }}
+                    {{ $sprintRaceDateTime := concat $sprintRaceDate "T" $sprintRaceTime }}
+                    {{ $parsedSprintRaceTime := parseLocalTime "2006-01-02T15:04:05" $sprintRaceDateTime }}
+                    {{ $now := now }}
+                    {{ if $parsedSprintRaceTime.Before $now }}
+                      <span class="color-highlight">Completed</span>
+                    {{ else }}
+                      <span class="color-highlight" {{ $parsedSprintRaceTime | toRelativeTime }}></span>
+                    {{ end }}
+                  </p>
+                  <p class="size-h5">{{ $sprintRaceDate }} at {{ $sprintRaceTime }}</p>
+                  {{ end }}
+                </div>
+
+                <ul class="size-h5 attachments">
+                  <li>{{ $session.String "circuit.country" }}</li>
+                  <li>{{ $session.String "circuit.city" }}</li>
+                  <li>{{ $session.String "laps" }} Laps</li>
+                  <li>{{ $session.String "circuit.circuitName" }}</li>
+                </ul>
+              </div>
+
+          - type: custom-api
+            title: Last F1 Race Results
+            cache: 1d
+            url: https://f1api.dev/api/current/last/race
+            template: |
+              <div class="flex flex-column gap-10">
+                <p class="size-h5">{{ .JSON.String "races.raceName" }}</p>
+                <ul class="list collapsible-container" data-collapse-after="5">
+                  {{ range $i, $v := .JSON.Array "races.results" }}
+                  <li class="flex items-center {{ if eq $i 0 }}color-primary{{ else if eq $i 1 }}color-highlight{{ end }}">
+                    <span class="grow min-width-0">{{ .String "position" }}. {{ .String "driver.shortName" }}</span>
+                    <span class="shrink-0 text-right">{{ .String "time" }}</span>
+                  </li>
+                  {{ end }}
+                </ul>
+              </div>
+
+          - type: custom-api
+            title: NBA Today
+            url: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+            cache: 15s
+            template: |
+              {{ $events := .JSON.Array "events" }}
+              {{ if eq (len $events) 0 }}
+                <div>No games scheduled today.</div>
+              {{ else }}
+                {{ $wid := printf "nba-%d" now.UnixNano }}
+                <div id="{{ $wid }}" style="position:relative;padding-bottom:{{ if gt (len $events) 6 }}25px{{ else }}0px{{ end }};">
+                  <input type="checkbox" id="{{ $wid }}-cb" style="display:none"/>
+                  <ul class="visible" style="list-style:none;padding:0;margin:0;">
+                    {{ $count := 0 }}
+
+                    {{ range $i, $g := $events }}
+                      {{ if and (lt $count 6) (eq ($g.String "competitions.0.status.type.name") "STATUS_IN_PROGRESS") }}
+                        {{ template "nba-game" $g }}
+                        {{ $count = add $count 1 }}
+                      {{ end }}
+                    {{ end }}
+
+                    {{ range $i, $g := $events }}
+                      {{ if and (lt $count 6) (eq ($g.String "competitions.0.status.type.name") "STATUS_SCHEDULED") }}
+                        {{ template "nba-game" $g }}
+                        {{ $count = add $count 1 }}
+                      {{ end }}
+                    {{ end }}
+
+                    {{ range $i, $g := $events }}
+                      {{ if and (lt $count 6) (not (or (eq ($g.String "competitions.0.status.type.name") "STATUS_IN_PROGRESS") (eq ($g.String "competitions.0.status.type.name") "STATUS_SCHEDULED"))) }}
+                        {{ template "nba-game" $g }}
+                        {{ $count = add $count 1 }}
+                      {{ end }}
+                    {{ end }}
+                  </ul>
+
+                  <ul class="all" style="list-style:none;padding:0;margin:0;display:none">
+                    {{ range $i, $g := $events }}
+                      {{ if eq ($g.String "competitions.0.status.type.name") "STATUS_IN_PROGRESS" }}
+                        {{ template "nba-game" $g }}
+                      {{ end }}
+                    {{ end }}
+
+                    {{ range $i, $g := $events }}
+                      {{ if eq ($g.String "competitions.0.status.type.name") "STATUS_SCHEDULED" }}
+                        {{ template "nba-game" $g }}
+                      {{ end }}
+                    {{ end }}
+
+                    {{ range $i, $g := $events }}
+                      {{ if not (or (eq ($g.String "competitions.0.status.type.name") "STATUS_IN_PROGRESS") (eq ($g.String "competitions.0.status.type.name") "STATUS_SCHEDULED")) }}
+                        {{ template "nba-game" $g }}
+                      {{ end }}
+                    {{ end }}
+                  </ul>
+
+                  {{ if gt (len $events) 6 }}
+                    <label for="{{ $wid }}-cb" style="position:absolute;bottom:0px;right:0;cursor:pointer;color:var(--glance-accent-color);font-size:16px;padding:5px;">
+                      <span style="display:inline-block;transition:transform .2s">▼</span>
+                    </label>
+                  {{ end }}
+                  <style>
+                    #{{ $wid }}-cb:not(:checked) ~ .all { display:none!important }
+                    #{{ $wid }}-cb:checked ~ .visible { display:none!important }
+                    #{{ $wid }}-cb:checked ~ .all { display:block!important }
+                    #{{ $wid }}-cb:checked ~ label span { transform:rotate(180deg)!important }
+                  </style>
+                </div>
+              {{ end }}
+
+              {{ define "nba-game" }}
+                {{ $state := .String "competitions.0.status.type.name" }}
+                {{ $away := index (.Array "competitions.0.competitors") 0 }}
+                {{ $home := index (.Array "competitions.0.competitors") 1 }}
+                {{ $awayRec := (index ($away.Array "records") 0).String "summary" }}
+                {{ $homeRec := (index ($home.Array "records") 0).String "summary" }}
+                <li style="display:flex;align-items:center;white-space:nowrap;gap:12px;padding:6px 0;border-bottom:1px solid var(--glance-divider);cursor:default" {{ if ne $state "STATUS_SCHEDULED" }}title="{{ $away.String "team.abbreviation" }} Box:{{ range $j,$ls := $away.Array "linescores" }}{{ if eq $j 0 }} Q1: {{ else if eq $j 1 }} Q2: {{ else if eq $j 2 }} Q3: {{ else if eq $j 3 }} Q4: {{ else }} OT: {{ end }}{{ $ls.String "value" }}{{ end }}&#10;{{ $home.String "team.abbreviation" }} Box:{{ range $j,$ls := $home.Array "linescores" }}{{ if eq $j 0 }} Q1: {{ else if eq $j 1 }} Q2: {{ else if eq $j 2 }} Q3: {{ else if eq $j 3 }} Q4: {{ else }} OT: {{ end }}{{ $ls.String "value" }}{{ end }}"{{ end }}>
+                  <span style="display:flex;align-items:center;width:90px;">
+                    <img src="{{ $away.String "team.logo" }}" alt="{{ $away.String "team.abbreviation" }}" style="width:24px;height:24px;margin-right:4px;"/>
+                    <span style="display:flex;flex-direction:column;margin-right:0;">
+                      <span style="font-weight:bold;">{{ $away.String "team.abbreviation" }}</span>
+                      <span style="font-size:0.7em;color:var(--glance-muted-text)">({{ $awayRec }})</span>
+                    </span>
+                    {{ if ne $state "STATUS_SCHEDULED" }}<span style="margin-left:0;font-size:1.1em;font-weight:500;">{{ $away.String "score" }}</span>{{ end }}
+                  </span>
+                  <span style="display:flex;flex-direction:column;align-items:center;min-width:90px;margin:0 8px;">
+                    <span>
+                      {{ if eq $state "STATUS_IN_PROGRESS" }}
+                        {{ $period := .String "competitions.0.status.period" }}
+                        <span style="font-size:0.85em;font-weight:500;">{{ if eq $period "1" }}1st{{ else if eq $period "2" }}2nd{{ else if eq $period "3" }}3rd{{ else if eq $period "4" }}4th{{ else }}OT{{ end }} {{ .String "competitions.0.status.displayClock" }}</span>
+                      {{ else if eq $state "STATUS_SCHEDULED" }}
+                        <span style="font-size:0.85em;">{{ .String "competitions.0.status.type.shortDetail" }}</span>
+                      {{ else }}
+                        <span style="font-size:0.85em;font-weight:500;">{{ .String "competitions.0.status.type.shortDetail" }}</span>
+                      {{ end }}
+                    </span>
+
+                    {{ if .Exists "competitions.0.series" }}
+                      <span style="font-size:0.7em;color:var(--glance-accent-color);margin-top:5px;">{{ .String "competitions.0.series.summary" }}</span>
+                    {{ end }}
+                  </span>
+                  <span style="display:flex;align-items:center;width:90px;">
+                    <img src="{{ $home.String "team.logo" }}" alt="{{ $home.String "team.abbreviation" }}" style="width:24px;height:24px;margin-right:4px;"/>
+                    <span style="display:flex;flex-direction:column;margin-right:0;">
+                      <span style="font-weight:bold;">{{ $home.String "team.abbreviation" }}</span>
+                      <span style="font-size:0.7em;color:var(--glance-muted-text)">({{ $homeRec }})</span>
+                    </span>
+                    {{ if ne $state "STATUS_SCHEDULED" }}<span style="margin-left:0;font-size:1.1em;font-weight:500;">{{ $home.String "score" }}</span>{{ end }}
+                  </span>
+                </li>
+              {{ end }}
 
           # - type: twitch-channels
           #   channels:
@@ -67,17 +335,29 @@ pages:
         widgets:
           - type: weather
             location: Lausanne, Switzerland
-            units: metric # alternatively "imperial"
-            hour-format: 24h # alternatively "24h"
-            # Optionally hide the location from being displayed in the widget
-            # hide-location: true
+            units: metric
+            hour-format: 24h
+
+          - type: custom-api
+            title: Steam Specials
+            cache: 12h
+            url: https://store.steampowered.com/api/featuredcategories?cc=chf
+            template: |
+              <ul class="list list-gap-10 collapsible-container" data-collapse-after="5">
+              {{ range .JSON.Array "specials.items" }}
+                <li>
+                  <a class="size-h4 color-highlight block text-truncate" href="https://store.steampowered.com/app/{{ .Int "id" }}/">{{ .String "name" }}</a>
+                  <ul class="list-horizontal-text">
+                    <li>{{ .Int "final_price" | toFloat | mul 0.01 | printf "CHF%.2f" }}</li>
+                    {{ $discount := .Int "discount_percent" }}
+                    <li{{ if ge $discount 40 }} class="color-positive"{{ end }}>{{ $discount }}% off</li>
+                  </ul>
+                </li>
+              {{ end }}
+              </ul>
 
           - type: markets
             markets:
-              - symbol: SPY
-                name: S&P 500
-              - symbol: BTC-USD
-                name: Bitcoin
               - symbol: NVDA
                 name: NVIDIA
               - symbol: AAPL
@@ -95,6 +375,59 @@ pages:
               - go-gitea/gitea
               - immich-app/immich
               - syncthing/syncthing
+
+          # - type: custom-api
+          #   title: Uptime Kumas
+          #   title-url: ${UPTIME_KUMA_URL}
+          #   url: ${UPTIME_KUMA_URL}/api/status-page/${UPTIME_KUMA_STATUS_SLUG}
+          #   subrequests:
+          #     heartbeats:
+          #       url: ${UPTIME_KUMA_URL}/api/status-page/heartbeat/${UPTIME_KUMA_STATUS_SLUG}
+          #   cache: 10m
+          #   template: |
+          #     {{ $hb := .Subrequest "heartbeats" }}
+
+          #     {{ if not (.JSON.Exists "publicGroupList") }}
+          #     <p class="color-negative">Error reading response</p>
+          #     {{ else if eq (len (.JSON.Array "publicGroupList")) 0 }}
+          #     <p>No monitors found</p>
+          #     {{ else }}
+
+          #     <ul class="dynamic-columns list-gap-8">
+          #       {{ range .JSON.Array "publicGroupList" }}
+          #       {{ range .Array "monitorList" }}
+          #       {{ $id := .String "id" }}
+          #       {{ $hbArray := $hb.JSON.Array (print "heartbeatList." $id) }}
+          #       {{ $latest := index $hbArray (toInt (sub ((len $hbArray) | toFloat) 1)) }}
+          #       <div class="flex items-center gap-12">
+          #         <a class="size-title-dynamic color-highlight text-truncate block grow" href="${UPTIME_KUMA_URL}/dashboard/{{ $id }}"
+          #           target="_blank" rel="noreferrer">
+          #           {{ .String "name" }} </a>
+          #         {{ if eq ($latest.Int "status") 1 }}
+          #         <div>{{ $latest.Int "ping" }}ms</div>
+          #         <div class="monitor-site-status-icon-compact" title="OK">
+          #           <svg fill="var(--color-positive)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          #             <path fill-rule="evenodd"
+          #               d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z"
+          #               clip-rule="evenodd"></path>
+          #           </svg>
+          #         </div>
+          #         {{ else }}
+          #         <div><span class="color-negative">DOWN</span></div>
+          #         <div class="monitor-site-status-icon-compact" title="{{ if $latest.Exists " msg" }}{{ $latest.String "msg" }}{{ else
+          #           }}Error{{ end }}">
+          #           <svg fill="var(--color-negative)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          #             <path fill-rule="evenodd"
+          #               d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+          #               clip-rule="evenodd"></path>
+          #           </svg>
+          #         </div>
+          #         {{ end }}
+          #       </div>
+          #       {{ end }}
+          #       {{ end }}
+          #     </ul>
+          #     {{ end }}
 
   # Add more pages here:
   # - name: Your page name
