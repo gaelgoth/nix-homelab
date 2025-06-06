@@ -1,0 +1,124 @@
+pages:
+  #-------------------------------- tab 1 ---------------------------------------
+  - name: Home
+    columns:
+      - size: full
+        widgets:
+          - type: calendar
+          - type: weather
+            units: imperial
+            location: Ogden, Utah, United States
+          - type: bookmarks
+            groups:
+              - title: General
+                color: 50 50 50
+                links:
+                  - title: Gmail
+                    url: https://mail.google.com/mail/u/0/
+                  - title: Amazon
+                    url: https://www.amazon.com/
+                  - title: Github
+                    url: https://github.com/
+              - title: Communication
+                color: 10 70 75
+                links:
+                  - title: FB Messenger
+                    url: https://messenger.com/
+                  - title: Google Voice
+                    url: https://voice.google.com/
+              - title: Entertainment
+                color: 10 70 50
+                links:
+                  - title: Plex
+                    url: https://plex.tv/
+                  - title: YouTube
+                    url: https://www.youtube.com/
+              - title: Social
+                color: 200 50 50
+                links:
+                  - title: Reddit
+                    url: https://www.reddit.com/
+                  - title: Facebook
+                    url: https://www.facebook.com/
+  #-------------------------------- tab 2 ---------------------------------------
+  - name: Feeds
+    columns:
+      - size: full
+        widgets:
+          - type: rss
+            limit: 100
+            collapse-after: 15
+            style: detailed-list
+            cache: 3h
+            feeds:
+              - url: https://www.cnx-software.com/feed/ # CNX Software
+              - url: https://newsroom.churchofjesuschrist.org/rss # Church Newsroom
+              - url: https://liliputing.com/feed #Liliputing
+              - url: https://9to5google.com/guides/google/feed/ # 9 to 5 Google
+              - url: https://www.ksl.com/rss/news/news\_utah #KSL UTAH News
+              - url: https://www.hackster.io/news/ # Hackster.io
+              - url: https://www.neowin.net/news/rss/ # Neowin
+              - url: https://goodereader.com/blog/feed # good e-reader
+  #-------------------------------- tab 3 ---------------------------------------
+  - name: Reddit
+    columns:
+      - size: full
+        widgets:
+          - type: reddit
+            subreddit: selfhosted
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: homeassistant
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: Xpenology
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: synology
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: immich
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: smoking
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: OffsetSmokers
+            show-thumbnails: true
+            limit: 25
+          - type: reddit
+            subreddit: opendirectories
+            show-thumbnails: true
+            limit: 25
+
+  #-------------------------------- tab 4 ---------------------------------------
+  - name: Youtube Channels
+    columns:
+      - size: full
+        widgets:
+          - title: BBQ Channels
+            type: videos
+            channels:
+              - UCsLTjOX249AJsrl9iJh4CSw # ChudsBBQ
+              - UCselvHbb5ah0sEqZrFa-7nA # Mad Scientist BBQ
+              - UCfx_bnkuHaJeQMgchdNvQDw # Smoker Builder
+          - title: Tech Channels
+            type: videos
+            channels:
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+              - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+              - UCOJJM6kvbqc5vytWR-TGu0w # AuxXxilium Tech
+              - UC_81EVeTVFtqe2FYMPOuJLw # VolumeData21
+              - UCwFpzG5MK5Shg_ncAhrgr9g # Awesome Open Source
+          - title: Health Channels
+            type: videos
+            channels:
+              - UC_yUeH8TsG5pxqvkOxBtsFA # Snake Diet
+              - UCAohrrjG-3gEp5QF1WlM9_w # Siim Land
