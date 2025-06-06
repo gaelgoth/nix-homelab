@@ -1,8 +1,8 @@
 { config, vars, ... }: {
   virtualisation.oci-containers.containers = {
     flaresolverr = {
-      # image = "ghcr.io/flaresolverr/flaresolverr:v3.3.24";
-      image = "21hsmw/flaresolverr:nodriver"; # NOTE: Temporary fix for prowlarr
+      image = "ghcr.io/flaresolverr/flaresolverr:v3.3.24";
+      # image = "21hsmw/flaresolverr:nodriver"; # NOTE: Temporary fix for prowlarr
       autoStart = true;
       ports = [ "8191:8191" ];
 
