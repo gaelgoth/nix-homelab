@@ -25,6 +25,7 @@
 
         ./modules/monitoring
         ./modules/tailscale
+        ./modules/cloudflared
 
         ./containers/adguardhome
         ./containers/arr
