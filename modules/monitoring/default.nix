@@ -148,6 +148,11 @@
         scrape_interval = "15s";
         static_configs = [{ targets = [ "127.0.0.1:9618" ]; }];
       }
+      {
+        job_name = "cloudflared";
+        scrape_interval = "15s";
+        static_configs = [{ targets = [ "127.0.0.1:20241" ]; }];
+      }
     ];
     enable = true;
     port = 9001;
