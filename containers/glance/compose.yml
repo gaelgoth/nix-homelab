@@ -7,3 +7,6 @@ services:
       - ./:/app/config
     ports:
       - 8080:8080
+    environment:
+      - UPTIME_KUMA_URL=https://kuma.homelab.gothuey.dev
+      - UPTIME_KUMA_STATUS_SLUG=containers
