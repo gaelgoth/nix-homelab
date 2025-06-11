@@ -436,6 +436,7 @@ pages:
                   - url: https://www.xda-developers.com/feed
                   - url: https://www.theverge.com/rss/index.xml
                   - url: https://blog.bytebytego.com/feed
+                  - url: https://newsletter.betterstack.com/feed
               - type: rss
                 title: Neowin
                 limit: 100
@@ -476,6 +477,14 @@ pages:
                 cache: 3h
                 feeds:
                   - url: https://blog.bytebytego.com/feed
+              - type: rss
+                title: Hacking scale
+                limit: 100
+                collapse-after: 15
+                style: detailed-list
+                cache: 3h
+                feeds:
+                  - url: https://newsletter.betterstack.com/feed
 
   # - name: Reddit
   #   columns:
