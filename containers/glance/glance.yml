@@ -30,7 +30,7 @@ pages:
           - type: custom-api
             title: Next F1 Race
             cache: 1h
-            url: https://f1api.dev/api/current/next?timezone=Europe/London
+            url: https://f1api.dev/api/current/next?timezone=Europe/Zurich
             template: |
               <div class="flex flex-column gap-10">
                 {{ $session := index (.JSON.Array "race") 0 }}
