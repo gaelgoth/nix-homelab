@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     handbrake = {
-      image = "jlesage/handbrake:v25.06.3";
+      image = "jlesage/handbrake:v25.07.1";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
