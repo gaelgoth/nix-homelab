@@ -20,15 +20,18 @@
         "data-gluetun:/gluetun"
         "${config.sops.secrets.wireguard-private-key.path}:/run/secrets/wireguard_private_key"
       ];
-      ports = [ "8080:8080" "6881:6881" "6881:6881/udp" ];
+      ports = [
+        "8080:8080" # qbittorrent
+        "6881:6881" # qBittorrent
+        "6881:6881/udp" # qBittorrent
+        ];
       environment = {
         TZ = vars.timeZone;
         VPN_SERVICE_PROVIDER = "protonvpn";
         VPN_TYPE = "wireguard";
         SERVER_COUNTRIES = "Switzerland";
-        # Tell gluetun where to read the WireGuard private key secret file
         WIREGUARD_PRIVATE_KEY_SECRETFILE = "/run/secrets/wireguard_private_key";
-        };
+      };
     };
   };
 }
