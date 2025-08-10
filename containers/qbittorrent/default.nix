@@ -22,12 +22,12 @@
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_QBITTORENT_KEY}}"
       ];
-        volumes = [
-          "qbittorrent-config:/config"
-          "${vars.mediaPath}/torrent:/downloads"
-          "${vars.mediaPath}/torrent/incomplete:/incomplete"
-        ];
-        # Ports are now managed by Gluetun. See Gluetun's config for port mapping.
+      volumes = [
+        "qbittorrent-config:/config"
+        "${vars.mediaPath}/torrent:/downloads"
+        "${vars.mediaPath}/torrent/incomplete:/incomplete"
+      ];
+      # Ports are managed by Gluetun. See Gluetun container config for port mapping.
       environment = { TZ = vars.timeZone; };
     };
   };
