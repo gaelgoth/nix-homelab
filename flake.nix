@@ -34,6 +34,7 @@
         ./containers/dozzle
         ./containers/flaresolverr
         ./containers/glance
+        ./containers/gluetun
         ./containers/handbrake
         ./containers/homepage
         ./containers/metube

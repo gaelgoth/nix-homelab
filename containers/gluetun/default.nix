@@ -1,0 +1,34 @@
+{ config, vars, ... }: {
+  sops.secrets.wireguard-private-key = { };
+  virtualisation.oci-containers.containers = {
+    gluetun = {
+      image = "qmcgaw/gluetun:v3.40.0";
+      autoStart = true;
+      extraOptions = [
+        "--pull=newer"
+        "--cap-add=NET_ADMIN"
+        "--device=/dev/net/tun"
+        "-l=homepage.group=System"
+        "-l=homepage.name=Gluetun"
+        "-l=homepage.icon=gluetun.svg"
+        "-l=homepage.description=VPN Client for containers"
+        # # "-l=homepage.widget.type=gluetun"
+        # "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3022"
+        # "-l=homepage.widget.key=TODO"
+      ];
+      volumes = [
+        "data-gluetun:/gluetun"
+        "${config.sops.secrets.wireguard-private-key.path}:/run/secrets/wireguard_private_key"
+      ];
+      ports = [ "8080:8080" "6881:6881" "6881:6881/udp" ];
+      environment = {
+        TZ = vars.timeZone;
+        VPN_SERVICE_PROVIDER = "protonvpn";
+        VPN_TYPE = "wireguard";
+        SERVER_COUNTRIES = "Switzerland";
+        # Tell gluetun where to read the WireGuard private key secret file
+        WIREGUARD_PRIVATE_KEY_SECRETFILE = "/run/secrets/wireguard_private_key";
+        };
+    };
+  };
+}

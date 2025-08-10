@@ -5,8 +5,10 @@
     qbittorrent = {
       image = "lscr.io/linuxserver/qbittorrent:latest";
       autoStart = true;
+      dependsOn = [ "gluetun" ];
       extraOptions = [
         "--pull=newer"
+        "--network=container:gluetun"
         "-l=homepage.group=Media"
         "-l=homepage.name=qBittorrent"
         "-l=homepage.icon=qbittorrent.svg"
@@ -20,12 +22,12 @@
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_QBITTORENT_KEY}}"
       ];
-      volumes = [
-        "qbittorrent-config:/config"
-        "${vars.mediaPath}/torrent:/downloads"
-        "${vars.mediaPath}/torrent/incomplete:/incomplete"
-      ];
-      ports = [ "8080:8080" "6881:6881" "6881:6881/udp" ];
+        volumes = [
+          "qbittorrent-config:/config"
+          "${vars.mediaPath}/torrent:/downloads"
+          "${vars.mediaPath}/torrent/incomplete:/incomplete"
+        ];
+        # Ports are now managed by Gluetun. See Gluetun's config for port mapping.
       environment = { TZ = vars.timeZone; };
     };
   };
