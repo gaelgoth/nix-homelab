@@ -31,6 +31,7 @@
         VPN_TYPE = "wireguard";
         SERVER_COUNTRIES = "Switzerland";
         WIREGUARD_PRIVATE_KEY_SECRETFILE = "/run/secrets/wireguard_private_key";
+        TOR_ONLY = "on";
       };
     };
   };
