@@ -21,6 +21,8 @@
         "${config.sops.secrets.wireguard-private-key.path}:/run/secrets/wireguard_private_key"
       ];
       ports = [
+        "8778:8888/tcp"
+        "8001:8000/tcp"
         "8080:8080" # qbittorrent
         "6881:6881" # qBittorrent
         "6881:6881/udp" # qBittorrent
@@ -31,7 +33,7 @@
         VPN_TYPE = "wireguard";
         SERVER_COUNTRIES = "Switzerland";
         WIREGUARD_PRIVATE_KEY_SECRETFILE = "/run/secrets/wireguard_private_key";
-        TOR_ONLY = "on";
+        # TOR_ONLY = "on";
       };
     };
   };
