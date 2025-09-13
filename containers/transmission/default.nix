@@ -2,7 +2,7 @@
   virtualisation.oci-containers.containers = {
     transmission = {
       # Using linuxserver.io image for Transmission
-      image = "lscr.io/linuxserver/transmission:4.0.6";
+      image = "lscr.io/linuxserver/transmission:2021.11.18";
       autoStart = true;
       dependsOn = [ "gluetun" ];
       extraOptions = [
