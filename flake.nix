@@ -45,6 +45,7 @@
         ./containers/stirlingpdf
         ./containers/uptimekuma
         ./containers/wallos
+        ./containers/transmission
         # ./containers/neko
         # ./containers/watchtower
 
