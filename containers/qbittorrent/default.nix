@@ -28,7 +28,14 @@
         "${vars.mediaPath}/torrent/incomplete:/incomplete"
       ];
       # Ports are managed by Gluetun. See Gluetun container config for port mapping.
-      environment = { TZ = vars.timeZone; };
+      environment = {
+        TZ = vars.timeZone;
+        PUID = "1000"; # adjust if different on host
+        PGID = "1000";
+        # Explicitly set ports so container & UI config match exposed ports on gluetun
+        WEBUI_PORT = "8080";
+        TORRENTING_PORT = "6881";
+      };
     };
   };
   #   TODO: Gluetun
