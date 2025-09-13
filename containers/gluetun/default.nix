@@ -26,7 +26,10 @@
         "8080:8080" # qbittorrent
         "6881:6881" # qBittorrent
         "6881:6881/udp" # qBittorrent
-        ];
+        "9091:9091" # transmission web UI
+        "51413:51413" # transmission peer port TCP
+        "51413:51413/udp" # transmission peer port UDP
+      ];
       environment = {
         TZ = vars.timeZone;
         VPN_SERVICE_PROVIDER = "protonvpn";
