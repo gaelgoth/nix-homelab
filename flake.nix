@@ -37,17 +37,20 @@
         ./containers/gluetun
         ./containers/handbrake
         ./containers/homepage
+        ./containers/joal
         ./containers/metube
         ./containers/nginxproxymanager
         ./containers/pairdrop
         ./containers/qbittorrent
         ./containers/speedtest
         ./containers/stirlingpdf
+        ./containers/transmission
         ./containers/uptimekuma
         ./containers/wallos
-        ./containers/transmission
+
         # ./containers/neko
         # ./containers/watchtower
+
 
         # ./containers/grafana # installed via nix package
         # ./containers/jellyfin
