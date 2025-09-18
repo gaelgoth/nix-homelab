@@ -25,7 +25,7 @@
 
   virtualisation.oci-containers.containers = {
     adguardhome = {
-      image = "adguard/adguardhome:v0.107.65";
+      image = "adguard/adguardhome:v0.107.66";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
@@ -50,7 +50,7 @@
     };
 
     adguardhome-exporter = {
-      image = "ghcr.io/henrywhitaker3/adguard-exporter:v1.2.0";
+      image = "ghcr.io/henrywhitaker3/adguard-exporter:v1.2.1";
       autoStart = true;
       extraOptions = [ "--pull=newer" ];
       # Expose ports
