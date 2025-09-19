@@ -23,7 +23,8 @@
       volumes = [
         "transmission-config:/config"
         "${vars.mediaPath}/torrent:/downloads"
-        "${vars.mediaPath}/torrent/tv-sonarr:/downloads/tv-sonarr"
+        "${vars.mediaPath}/torrent/complete/tv-sonarr:/downloads/tv-sonarr"
+        "${vars.mediaPath}/torrent/complete/radarr:/downloads/radarr"
         "${vars.mediaPath}/torrent/incomplete:/incomplete"
       ];
       environment = {

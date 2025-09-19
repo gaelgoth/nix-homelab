@@ -68,7 +68,7 @@
         "sonarr-config:/config"
         "${vars.mediaPath}/Shows:/tv"
         "${vars.mediaPath}/torrent:/downloads"
-
+        "${vars.mediaPath}/torrent/complete/tv-sonarr:/downloads/tv-sonarr"
       ];
       ports = [ "8989:8989" ];
       environment = { TZ = vars.timeZone; };
@@ -96,6 +96,7 @@
         "radarr-config:/config"
         "${vars.mediaPath}/Movies:/Movies"
         "${vars.mediaPath}/torrent:/downloads"
+        "${vars.mediaPath}/torrent/complete/radarr:/downloads/radarr"
       ];
       ports = [ "7878:7878" ];
       environment = { TZ = vars.timeZone; };
