@@ -22,20 +22,15 @@
       ];
       volumes = [
         "transmission-config:/config"
-        # Completed + active downloads
         "${vars.mediaPath}/torrent:/downloads"
-        "${vars.mediaPath}/torrent/complete/tv-sonnar:/downloads/tv-sonnar"
-        "${vars.mediaPath}/torrent/complete/radarr:/downloads/radarr"
-        # Optional watch folder for .torrent files
-        # "${vars.mediaPath}/torrent/watch:/watch"
-        # Optional incomplete directory (Transmission supports it when enabled in settings.json)
+        "${vars.mediaPath}/torrent/tv-sonarr:/downloads/tv-sonarr"
         "${vars.mediaPath}/torrent/incomplete:/incomplete"
       ];
-      # Ports exposed via Gluetun (9091, 51413 TCP/UDP) so none mapped here directly.
       environment = {
         TZ = vars.timeZone;
-        # PUID = "1000"; # Uncomment & adjust if needed for permissions
-        # PGID = "1000";
+        # Align with qBittorrent for consistent ownership on the host
+        PUID = "1000";
+        PGID = "1000";
         # TRANSMISSION_WEB_HOME = "/flood-for-transmission/"; # Example alt UI
       };
     };
