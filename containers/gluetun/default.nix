@@ -1,6 +1,9 @@
-{ config, vars, ... }: {
-  sops.secrets.wireguard-private-key = { };
-  virtualisation.oci-containers.containers = {
+{ config, lib, vars, ... }:
+let inherit (lib) mkIf;
+in {
+  # Only define secret and container when Gluetun is enabled
+  sops.secrets.wireguard-private-key = mkIf vars.enableGluetun { };
+  virtualisation.oci-containers.containers = mkIf vars.enableGluetun {
     gluetun = {
       image = "qmcgaw/gluetun:v3.40.0";
       autoStart = true;
@@ -12,9 +15,6 @@
         "-l=homepage.name=Gluetun"
         "-l=homepage.icon=gluetun.svg"
         "-l=homepage.description=VPN Client for containers"
-        # # "-l=homepage.widget.type=gluetun"
-        # "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3022"
-        # "-l=homepage.widget.key=TODO"
       ];
       volumes = [
         "data-gluetun:/gluetun"
@@ -23,9 +23,11 @@
       ports = [
         "8778:8888/tcp"
         "8001:8000/tcp"
+        # Ports for dependent containers (only mapped when using Gluetun). If Gluetun
+        # is disabled, those containers expose ports themselves.
         "8080:8080" # qbittorrent
-        "6881:6881" # qBittorrent
-        "6881:6881/udp" # qBittorrent
+        "6881:6881" # qBittorrent TCP
+        "6881:6881/udp" # qBittorrent UDP
         "9091:9091" # transmission web UI
         "51413:51413" # transmission peer port TCP
         "51413:51413/udp" # transmission peer port UDP
@@ -37,7 +39,6 @@
         SERVER_COUNTRIES = "Switzerland";
         WIREGUARD_PRIVATE_KEY_SECRETFILE = "/run/secrets/wireguard_private_key";
         HEALTH_SUCCESS_WAIT_DURATION = "60s";
-        # TOR_ONLY = "on";
       };
     };
   };
