@@ -24,6 +24,8 @@
         "transmission-config:/config"
         # Completed + active downloads
         "${vars.mediaPath}/torrent:/downloads"
+        "${vars.mediaPath}/torrent/complete/tv-sonnar:/downloads/tv-sonnar"
+        "${vars.mediaPath}/torrent/complete/radarr:/downloads/radarr"
         # Optional watch folder for .torrent files
         # "${vars.mediaPath}/torrent/watch:/watch"
         # Optional incomplete directory (Transmission supports it when enabled in settings.json)

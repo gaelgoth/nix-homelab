@@ -51,7 +51,6 @@
         # ./containers/neko
         # ./containers/watchtower
 
-
         # ./containers/grafana # installed via nix package
         # ./containers/jellyfin
 
