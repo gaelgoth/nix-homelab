@@ -1,4 +1,4 @@
-{ config, vars, ... }: {
+{ config, ... }: {
   networking.firewall.allowedTCPPorts = [
     3000 # API
     3004 # WebUI
@@ -34,15 +34,15 @@
         "-l=homepage.group=System"
         "-l=homepage.name=adguardhome"
         "-l=homepage.icon=adguard-home.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:3004"
+        "-l=homepage.href=http://${config.homelab.ip}:3004"
         "-l=homepage.description=Ads Blocker"
 
         "-l=homepage.widget.type=adguard"
-        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:3004"
+        "-l=homepage.widget.url=http://${config.homelab.ip}:3004"
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_ADGUARDHOME_KEY}}"
       ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
       volumes = [
         "adguardhome-work-data:/opt/adguardhome/work"
         "adguardhome-conf-data:/opt/adguardhome/conf"
@@ -60,7 +60,7 @@
 
       environment = {
         TZ = config.time.timeZone;
-        ADGUARD_SERVERS = "http://${vars.homelabStaticIp}:3004";
+        ADGUARD_SERVERS = "http://${config.homelab.ip}:3004";
         ADGUARD_USERNAMES = "admin";
         DEBUG = "true";
         INTERVAL = "15s";

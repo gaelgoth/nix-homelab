@@ -1,4 +1,4 @@
-{ config, vars, ... }: {
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     flaresolverr = {
       # image = "ghcr.io/flaresolverr/flaresolverr:v3.4.1";
@@ -19,7 +19,7 @@
         "-l=homepage.name=flaresolverr"
         "-l=homepage.description=Captcha solver proxy"
         "-l=homepage.icon=flaresolverr.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:8191"
+        "-l=homepage.href=http://${config.homelab.ip}:8191"
       ];
 
     };

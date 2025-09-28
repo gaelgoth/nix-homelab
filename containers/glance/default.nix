@@ -1,4 +1,4 @@
-{ config, vars, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   #   directories = [
   #     "${vars.serviceConfigRoot}/homepage"
@@ -38,7 +38,7 @@ in {
           "-l=homepage.group=Services"
           "-l=homepage.name=Glance"
           "-l=homepage.icon=glance.svg"
-          "-l=homepage.href=http://${vars.homelabStaticIp}:3027"
+          "-l=homepage.href=http://${config.homelab.ip}:3027"
         ];
         volumes = [
           "glance-config:/app/config"

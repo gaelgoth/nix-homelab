@@ -1,4 +1,4 @@
-{ modulesPath, config, vars, lib, pkgs, inputs, ... }:
+{ modulesPath, config, lib, pkgs, inputs, ... }:
 let
   nfsDefaultOptions =
     [ "nofail" "noatime" "nolock" "intr" "tcp" "actimeo=1800" ];
@@ -33,11 +33,11 @@ in {
 
     interfaces.ens3.useDHCP = false;
     interfaces.ens3.ipv4.addresses = [{
-      address = vars.homelabStaticIp;
+      address = config.homelab.ip;
       prefixLength = 24;
     }];
     defaultGateway = "192.168.1.1";
-    nameservers = [ "192.168.1.2" "8.8.8.8" "1.1.1.1" ];
+    nameservers = [ config.homelab.nasIp "8.8.8.8" "1.1.1.1" ];
   };
 
   time.timeZone = "Europe/Zurich";
@@ -105,18 +105,17 @@ in {
   # NFS mounts
   fileSystems = {
     "/mnt/media" = {
-      device = "${vars.nasStaticIp}:/volume1/media";
+      device = "${config.homelab.nasIp}:/volume1/media";
       fsType = "nfs";
       options = nfsDefaultOptions;
     };
     "/mnt/documents" = {
-      device = "${vars.nasStaticIp}:/volume1/documents";
+      device = "${config.homelab.nasIp}:/volume1/documents";
       fsType = "nfs";
       options = nfsDefaultOptions;
     };
-
     "/mnt/nvme" = {
-      device = "${vars.nasStaticIp}:/volume2/nvme";
+      device = "${config.homelab.nasIp}:/volume2/nvme";
       fsType = "nfs";
       options = nfsDefaultOptions;
     };
@@ -139,6 +138,14 @@ in {
     dates = "*-*-* 04:00:00";
     randomizedDelaySec = "1h";
     flake = "github:gaelgoth/nix-homelab";
+  };
+
+  # Homelab shared option overrides (Phase 1 migration from vars.nix)
+  homelab = {
+    ip = "192.168.1.5";
+    nasIp = "192.168.1.2";
+    domain = "homelab.gothuey.dev";
+    mediaPath = "/mnt/media";
   };
 
   system.stateVersion = "25.05";

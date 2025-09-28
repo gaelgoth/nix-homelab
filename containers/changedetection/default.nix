@@ -1,4 +1,4 @@
-{ vars, ... }: {
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     changedetection = {
       image = "ghcr.io/dgtlmoon/changedetection.io:0.50.14";
@@ -8,16 +8,16 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Changedetection"
         "-l=homepage.icon=changedetection.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:5000"
+        "-l=homepage.href=http://${config.homelab.ip}:5000"
         "-l=homepage.description=Website change detection"
 
         "-l=homepage.widget.type=changedetectionio"
-        "-l=homepage.widget.url=http://${vars.homelabStaticIp}:5000"
+        "-l=homepage.widget.url=http://${config.homelab.ip}:5000"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_CHANGEDETECTION_KEY}}"
       ];
       ports = [ "5000:5000" ];
       volumes = [ "changedetection-data:/datastore" ];
-  # environment = { PLAYWRIGHT_DRIVER_URL = "ws://playwright-chrome:3000"; };
+      # environment = { PLAYWRIGHT_DRIVER_URL = "ws://playwright-chrome:3000"; };
       # dependsOn = [ "playwright-chrome" ];
     };
 

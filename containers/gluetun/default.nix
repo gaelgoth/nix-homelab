@@ -1,4 +1,4 @@
-{ config, vars, ... }: {
+{ config, ... }: {
   sops.secrets.wireguard-private-key = { };
   virtualisation.oci-containers.containers = {
     gluetun = {
