@@ -21,7 +21,7 @@
       ];
       ports = [ "3018:8080" ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         DOCKER_ENABLE_SECURITY = "false";
       };
     };

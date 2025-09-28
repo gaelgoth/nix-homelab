@@ -39,7 +39,7 @@ in {
       # Expose same port outside for simplicity
       ports = [ "${toString joalPort}:${toString joalPort}" ];
 
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
   };
 }

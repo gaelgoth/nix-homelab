@@ -21,7 +21,7 @@
       ];
       volumes = [ "npm-data:/data" "npm-letsencrypt:/etc/letsencrypt" ];
       ports = [ "80:80" "81:81" "443:443" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
   };
 }

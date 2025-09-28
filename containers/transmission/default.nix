@@ -28,7 +28,7 @@
         "${vars.mediaPath}/torrent/incomplete:/incomplete"
       ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         # Align with qBittorrent for consistent ownership on the host
         PUID = "1000";
         PGID = "1000";

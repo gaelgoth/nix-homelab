@@ -42,7 +42,7 @@
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_ADGUARDHOME_KEY}}"
       ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
       volumes = [
         "adguardhome-work-data:/opt/adguardhome/work"
         "adguardhome-conf-data:/opt/adguardhome/conf"
@@ -59,7 +59,7 @@
       environmentFiles = [ config.sops.secrets.ADGUARD_PASSWORDS.path ];
 
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         ADGUARD_SERVERS = "http://${vars.homelabStaticIp}:3004";
         ADGUARD_USERNAMES = "admin";
         DEBUG = "true";

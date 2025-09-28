@@ -15,7 +15,7 @@
       volumes = [ "/var/run/podman/podman.sock:/var/run/docker.sock:ro" ];
 
       ports = [ "3024:8080" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
   };
 }

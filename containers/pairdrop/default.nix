@@ -16,7 +16,7 @@
       ];
       ports = [ "3021:3000" ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         RATE_LIMIT = "false";
         WS_FALLBACK = "false"; # optional
         RTC_CONFIG = ""; # optional

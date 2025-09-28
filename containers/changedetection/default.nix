@@ -17,7 +17,7 @@
       ];
       ports = [ "5000:5000" ];
       volumes = [ "changedetection-data:/datastore" ];
-      # environment = { PLAYWRIGHT_DRIVER_URL = "ws://playwright-chrome:3000"; };
+  # environment = { PLAYWRIGHT_DRIVER_URL = "ws://playwright-chrome:3000"; };
       # dependsOn = [ "playwright-chrome" ];
     };
 
