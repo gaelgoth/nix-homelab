@@ -62,7 +62,7 @@ in {
         ];
         ports = [ "3027:8080" ];
         environment = {
-          TZ = vars.timeZone;
+          TZ = config.time.timeZone;
 
           UPTIME_KUMA_URL = "https://kuma.homelab.gothuey.dev";
           UPTIME_KUMA_STATUS_SLUG = "containers";

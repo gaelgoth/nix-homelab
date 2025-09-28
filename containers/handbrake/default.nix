@@ -21,7 +21,7 @@
         "${vars.mediaPath}/share/handbrake/output:/output"
       ];
       ports = [ "5800:5800" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
   };
 }

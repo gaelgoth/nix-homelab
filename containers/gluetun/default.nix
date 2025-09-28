@@ -31,7 +31,7 @@
         "51413:51413/udp" # transmission peer port UDP
       ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         VPN_SERVICE_PROVIDER = "protonvpn";
         VPN_TYPE = "wireguard";
         SERVER_COUNTRIES = "Switzerland";

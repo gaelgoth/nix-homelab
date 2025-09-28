@@ -87,7 +87,7 @@ in {
         ];
         ports = [ "3001:3000" ];
         environment = {
-          TZ = vars.timeZone;
+          TZ = config.time.timeZone;
 
           HOMEPAGE_ALLOWED_HOSTS =
             "${vars.homelabStaticIp}:3001,${vars.defaultDomain}";

@@ -21,7 +21,7 @@
       ports = [ "8765:80" ];
 
       environment = {
-        TZ = "Europe/Zurich";
+        TZ = config.time.timeZone;
         OOKLA_EULA_GDPR = "true";
       };
       log-driver = "json-file";

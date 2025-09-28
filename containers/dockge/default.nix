@@ -20,7 +20,7 @@
 
       ports = [ "5001:5001" ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         DOCKGE_STACKS_DIR = "/mnt/documents/dockge/stacks";
       };
     };

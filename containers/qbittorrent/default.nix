@@ -29,7 +29,7 @@
       ];
       # Ports are managed by Gluetun. See Gluetun container config for port mapping.
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         PUID = "1000"; # adjust if different on host
         PGID = "1000";
         # Explicitly set ports so container & UI config match exposed ports on gluetun

@@ -21,7 +21,7 @@
       volumes = [ "jellyseerr-config:/app/config" ];
       ports = [ "5055:5055" ];
       environment = {
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
         LOG_LEVEL = "info";
       };
     };
@@ -44,7 +44,7 @@
       ];
       volumes = [ "prowlarr-config:/config" ];
       ports = [ "9696:9696" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
 
     sonarr = {
@@ -71,7 +71,7 @@
         "${vars.mediaPath}/torrent/complete/tv-sonarr:/downloads/tv-sonarr"
       ];
       ports = [ "8989:8989" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
 
     radarr = {
@@ -99,7 +99,7 @@
         "${vars.mediaPath}/torrent/complete/radarr:/downloads/radarr"
       ];
       ports = [ "7878:7878" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
 
     # readarr = {
@@ -151,7 +151,7 @@
         "${vars.mediaPath}/Shows:/tv"
       ];
       ports = [ "6767:6767" ];
-      environment = { TZ = vars.timeZone; };
+  environment = { TZ = config.time.timeZone; };
     };
   };
 }

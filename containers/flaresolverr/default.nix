@@ -10,7 +10,7 @@
         LOG_LEVEL = "info";
         LOG_HTML = "false";
         CAPTCHA_SOLVER = "none";
-        TZ = vars.timeZone;
+        TZ = config.time.timeZone;
       };
 
       extraOptions = [
