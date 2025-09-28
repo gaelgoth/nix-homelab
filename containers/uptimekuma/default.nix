@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -10,7 +10,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=uptime-kuma"
         "-l=homepage.icon=uptime-kuma.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:3005"
+        "-l=homepage.href=http://${config.homelab.ip}:3005"
         # "-l=homepage.href=https://kuma.${vars.domainName}"
         # "-l=homepage.description=Website Monitoring"
         # "-l=homepage.widget.type=uptimekuma"
@@ -22,7 +22,7 @@
         "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
       ];
       ports = [ "3005:3001" ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

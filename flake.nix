@@ -12,16 +12,14 @@
   outputs = { self, nixpkgs, disko, vscode-server, sops-nix, ... }: {
     nixosConfigurations.nixos-homelab-vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {
-        inherit sops-nix;
-        vars = import ./vars.nix;
-      };
+      specialArgs = { inherit sops-nix; };
       modules = [
         disko.nixosModules.disko
         vscode-server.nixosModules.default
         sops-nix.nixosModules.sops
 
         ./configuration.nix
+        ./modules/homelab/core.nix
 
         ./modules/monitoring
         ./modules/tailscale

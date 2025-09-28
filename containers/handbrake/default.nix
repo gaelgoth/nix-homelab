@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -10,18 +10,18 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=Handbrake"
         "-l=homepage.icon=handbrake.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:5800"
+        "-l=homepage.href=http://${config.homelab.ip}:5800"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Video converter"
       ];
       volumes = [
         "handbrake-config:/config"
-        "${vars.mediaPath}/share:/storage"
-        "${vars.mediaPath}/share/handbrake/watch:/watch"
-        "${vars.mediaPath}/share/handbrake/output:/output"
+        "${config.homelab.mediaPath}/share:/storage"
+        "${config.homelab.mediaPath}/share/handbrake/watch:/watch"
+        "${config.homelab.mediaPath}/share/handbrake/output:/output"
       ];
       ports = [ "5800:5800" ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

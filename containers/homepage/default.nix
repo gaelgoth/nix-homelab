@@ -1,4 +1,4 @@
-{ config, vars, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   #   directories = [
   #     "${vars.serviceConfigRoot}/homepage"
@@ -90,7 +90,7 @@ in {
           TZ = config.time.timeZone;
 
           HOMEPAGE_ALLOWED_HOSTS =
-            "${vars.homelabStaticIp}:3001,${vars.defaultDomain}";
+            "${config.homelab.ip}:3001,${config.homelab.domain}";
 
           HOMEPAGE_FILE_ADGUARDHOME_KEY = "/app/config/adguardhome.key";
           HOMEPAGE_FILE_CHANGEDETECTION_KEY = "/app/config/changedetection.key";

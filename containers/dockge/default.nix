@@ -1,4 +1,4 @@
-{ config, vars, ... }: {
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     dockge = {
       image = "louislam/dockge:1";
@@ -8,7 +8,7 @@
         "-l=homepage.group=System"
         "-l=homepage.name=dockge - main agent"
         "-l=homepage.icon=dockge.png"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:5001"
+        "-l=homepage.href=http://${config.homelab.ip}:5001"
         # "-l=homepage.href=https://dockge.${vars.domainName}"
         "-l=homepage.description=Containers Manager"
       ];

@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -10,7 +10,7 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=wallos"
         "-l=homepage.icon=wallos.png" # TODO: Set icon
-        "-l=homepage.href=http://${vars.homelabStaticIp}:8282"
+        "-l=homepage.href=http://${config.homelab.ip}:8282"
         # "-l=homepage.href=https://kuma.${vars.domainName}"
         # "-l=homepage.description=Website Monitoring"
         # "-l=homepage.widget.type=uptimekuma"
@@ -22,7 +22,7 @@
         "wallos-logos:/var/www/html/images/uploads/logos"
       ];
       ports = [ "8282:80" ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

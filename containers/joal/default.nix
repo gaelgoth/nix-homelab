@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 let
   joalPort = 8445;
   uiPrefix = "joal";
@@ -14,7 +14,7 @@ in {
         "-l=homepage.group=Media"
         "-l=homepage.name=JOAL"
         "-l=homepage.icon=mdi-arrow-top-left"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:${
+        "-l=homepage.href=http://${config.homelab.ip}:${
           toString joalPort
         }/${uiPrefix}/ui/#/"
       ];
@@ -39,7 +39,7 @@ in {
       # Expose same port outside for simplicity
       ports = [ "${toString joalPort}:${toString joalPort}" ];
 
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -10,7 +10,7 @@
         "-l=homepage.group=System"
         "-l=homepage.name=Nginx Proxy Manager"
         "-l=homepage.icon=nginx-proxy-manager.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:81"
+        "-l=homepage.href=http://${config.homelab.ip}:81"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Reverse Proxy"
 
@@ -21,7 +21,7 @@
       ];
       volumes = [ "npm-data:/data" "npm-letsencrypt:/etc/letsencrypt" ];
       ports = [ "80:80" "81:81" "443:443" ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

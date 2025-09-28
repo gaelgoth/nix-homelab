@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -10,15 +10,15 @@
         "-l=homepage.group=Services"
         "-l=homepage.name=meTube"
         "-l=homepage.icon=metube.svg"
-        "-l=homepage.href=http://${vars.homelabStaticIp}:3024"
+        "-l=homepage.href=http://${config.homelab.ip}:3024"
         # "-l=homepage.href=https://jellyseer.${vars.domainName}"
         "-l=homepage.description=Streaming downloader (Youtube, SoundCloud, Reddit,...)"
 
       ];
 
-      volumes = [ "${vars.mediaPath}/downloads:/downloads" ];
+      volumes = [ "${config.homelab.mediaPath}/downloads:/downloads" ];
       ports = [ "3025:8081" ];
-  environment = { TZ = config.time.timeZone; };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }
