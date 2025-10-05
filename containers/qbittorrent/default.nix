@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     qbittorrent = {
-      image = "lscr.io/linuxserver/qbittorrent:libtorrentv1";
+      image = "lscr.io/linuxserver/qbittorrent:5.1.2";
       autoStart = true;
       dependsOn = [ "gluetun" ];
       extraOptions = [
