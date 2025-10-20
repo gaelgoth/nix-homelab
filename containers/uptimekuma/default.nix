@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     uptimekuma = {
-      image = "louislam/uptime-kuma:1";
+      image = "louislam/uptime-kuma:2";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
