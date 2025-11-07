@@ -1,6 +1,35 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+let
+  backend =
+    if config.virtualisation.oci-containers ? backend
+    then config.virtualisation.oci-containers.backend
+    else "docker";
+  qbServiceName = "${backend}-qbittorrent";
+  gluetunServiceName = "${backend}-gluetun";
+  runtimeCommand =
+    if backend == "podman"
+    then lib.getExe pkgs.podman
+    else "docker";
+  waitForGluetun = pkgs.writeShellScript "wait-for-gluetun" ''
+    set -euo pipefail
+
+    runtime="${runtimeCommand}"
+
+    echo "[qbittorrent] waiting for gluetun to become healthy" >&2
+
+    for attempt in $(seq 1 30); do
+      status=$($runtime inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' gluetun 2>/dev/null || true)
+      if [ "$status" = "healthy" ] || [ "$status" = "running" ]; then
+        exit 0
+      fi
+      sleep 4
+    done
+
+    echo "[qbittorrent] gluetun container never reported healthy" >&2
+    exit 1
+  '';
+in {
   virtualisation.oci-containers.containers = {
     qbittorrent = {
       image = "lscr.io/linuxserver/qbittorrent:5.1.2-r3-ls422";
@@ -38,5 +67,11 @@
       };
     };
   };
-  #   TODO: Gluetun
+  systemd.services.${qbServiceName} = {
+    # Delay qBittorrent until Gluetun's health check succeeds
+    after = lib.mkAfter [ gluetunServiceName "network-online.target" ];
+    requires = lib.mkAfter [ gluetunServiceName ];
+    wants = lib.mkAfter [ "network-online.target" ];
+    serviceConfig.ExecStartPre = lib.mkAfter [ waitForGluetun ];
+  };
 }
