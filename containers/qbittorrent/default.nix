@@ -69,8 +69,8 @@ in {
   };
   systemd.services.${qbServiceName} = {
     # Delay qBittorrent until Gluetun's health check succeeds
-    after = lib.mkAfter [ gluetunServiceName "network-online.target" ];
-    requires = lib.mkAfter [ gluetunServiceName ];
+    after = lib.mkAfter [ "${gluetunServiceName}.service" "network-online.target" ];
+    requires = lib.mkAfter [ "${gluetunServiceName}.service" ];
     wants = lib.mkAfter [ "network-online.target" ];
     serviceConfig.ExecStartPre = lib.mkAfter [ waitForGluetun ];
   };
