@@ -2,7 +2,7 @@
   sops.secrets.wireguard-private-key = { };
   virtualisation.oci-containers.containers = {
     gluetun = {
-      image = "qmcgaw/gluetun:v3.40.1";
+      image = "qmcgaw/gluetun:v3.40.3";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
