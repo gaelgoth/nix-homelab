@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     stirlingpdf = {
-      image = "frooodle/s-pdf:2.2.1";
+      image = "frooodle/s-pdf:2.3.0";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
