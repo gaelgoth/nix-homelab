@@ -116,6 +116,23 @@ Build:
 - Dry-run: `sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm`
 - Rebuild: `sudo nixos-rebuild --flake .#nixos-homelab-vm switch`
 
+## Openclaw
+
+```sh
+# Interractive shell
+sudo -u openclaw --login openclaw shell
+
+# Restart gateway (systemd user service)
+systemctl --user --machine=openclaw@.host restart openclaw-gateway
+
+# Status / health
+sudo -u openclaw --login openclaw status --all
+
+# Logs
+sudo -u openclaw --login tail -n 200 /tmp/openclaw/openclaw-$(date +%F).log
+sudo -u openclaw --login tail -n 200 /tmp/openclaw/openclaw-gateway.log
+```
+
 ## Local env utils
 
 **Install `nixfmt`**
