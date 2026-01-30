@@ -4,7 +4,8 @@ let
   uiPrefix = "joal";
   secretToken = "CHANGE_ME_SECURE_TOKEN";
   enableIframe = false;
-in {
+in
+{
   virtualisation.oci-containers.containers = {
     joal = {
       image = "anthonyraymond/joal:latest";
@@ -14,9 +15,7 @@ in {
         "-l=homepage.group=Media"
         "-l=homepage.name=JOAL"
         "-l=homepage.icon=mdi-arrow-top-left"
-        "-l=homepage.href=http://${config.homelab.ip}:${
-          toString joalPort
-        }/${uiPrefix}/ui/#/"
+        "-l=homepage.href=http://${config.homelab.ip}:${toString joalPort}/${uiPrefix}/ui/#/"
       ];
 
       cmd = [
@@ -25,7 +24,8 @@ in {
         "--server.port=${toString joalPort}"
         "--joal.ui.path.prefix=${uiPrefix}"
         "--joal.ui.secret-token=${secretToken}"
-      ] ++ (if enableIframe then [ "--joal.iframe.enabled=true" ] else [ ]);
+      ]
+      ++ (if enableIframe then [ "--joal.iframe.enabled=true" ] else [ ]);
 
       # Mount local (Nix-store) config + clients as read-only; keep torrents writable via named volume.
       # ./config.json and ./clients refer to this directory (added to store at build time).
@@ -39,7 +39,9 @@ in {
       # Expose same port outside for simplicity
       ports = [ "${toString joalPort}:${toString joalPort}" ];
 
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
   };
 }

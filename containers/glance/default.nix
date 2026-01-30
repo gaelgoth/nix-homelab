@@ -13,7 +13,8 @@ let
       text = builtins.readFile ./glance.yml;
     };
   };
-in {
+in
+{
 
   #   sops.secrets.adguardhome-password = { };
   #   sops.secrets.bazarr-api-key = { };

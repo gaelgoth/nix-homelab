@@ -119,7 +119,7 @@ Build:
 ## Openclaw
 
 ```sh
-# Interractive shell
+# Interactive shell
 sudo -u openclaw --login openclaw shell
 
 # Restart gateway (systemd user service)

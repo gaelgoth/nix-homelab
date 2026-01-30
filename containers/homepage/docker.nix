@@ -1,1 +1,5 @@
-{ my-docker = { socket = "/var/run/docker.sock"; }; }
+{
+  my-docker = {
+    socket = "/var/run/docker.sock";
+  };
+}
