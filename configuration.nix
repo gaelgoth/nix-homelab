@@ -43,6 +43,8 @@ in {
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  swapDevices = [ { device = "/swapfile"; size = 8192; } ];
+
   virtualisation.containers.enable = true;
   virtualisation = {
     podman = {
@@ -61,6 +63,12 @@ in {
 
   programs.fish.enable = true;
 
+  systemd.tmpfiles.rules = [
+    "L+ /bin - - - - /run/current-system/sw/bin"
+  ];
+
+  system.activationScripts.binsh = lib.mkForce "";
+
   security.sudo.wheelNeedsPassword = false;
 
   services = {
@@ -76,7 +84,7 @@ in {
     pkgs.gitMinimal
     pkgs.nano
     pkgs.ncdu
-    pkgs.nixfmt-classic
+    pkgs.nixfmt
     pkgs.podman-tui
     pkgs.sops
     pkgs.tmux
