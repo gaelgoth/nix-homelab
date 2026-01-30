@@ -16,8 +16,7 @@ let
       name = "settings.yaml";
       text = builtins.readFile ./settings.yaml;
     };
-    bookmarks =
-      settingsFormat.generate "bookmarks.yaml" (import ./bookmarks.nix);
+    bookmarks = settingsFormat.generate "bookmarks.yaml" (import ./bookmarks.nix);
     widgets = pkgs.writeTextFile {
       name = "widgets.yaml";
       text = builtins.readFile ./widgets.yaml;
@@ -27,7 +26,8 @@ let
     name = "custom.css";
     text = builtins.readFile ./custom.css;
   };
-in {
+in
+{
 
   environment.systemPackages = with pkgs; [ glances ];
 
@@ -89,8 +89,7 @@ in {
         environment = {
           TZ = config.time.timeZone;
 
-          HOMEPAGE_ALLOWED_HOSTS =
-            "${config.homelab.ip}:3001,${config.homelab.domain}";
+          HOMEPAGE_ALLOWED_HOSTS = "${config.homelab.ip}:3001,${config.homelab.domain}";
 
           HOMEPAGE_FILE_ADGUARDHOME_KEY = "/app/config/adguardhome.key";
           HOMEPAGE_FILE_CHANGEDETECTION_KEY = "/app/config/changedetection.key";
@@ -101,8 +100,7 @@ in {
           HOMEPAGE_FILE_PROWLARR_KEY = "/app/config/prowlarr.key";
           HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
-          HOMEPAGE_FILE_QBITTORENT_KEY =
-            "/app/config/qbittorrent-admin-password.key";
+          HOMEPAGE_FILE_QBITTORENT_KEY = "/app/config/qbittorrent-admin-password.key";
           HOMEPAGE_FILE_SYNOLOGY_KEY = "/app/config/synology.key";
           HOMEPAGE_FILE_WATCHTOWER_KEY = "/app/config/watchtower.key";
         };

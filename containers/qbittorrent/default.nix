@@ -1,14 +1,19 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  backend = if config.virtualisation.oci-containers ? backend then
-    config.virtualisation.oci-containers.backend
-  else
-    "docker";
+  backend =
+    if config.virtualisation.oci-containers ? backend then
+      config.virtualisation.oci-containers.backend
+    else
+      "docker";
   qbServiceName = "${backend}-qbittorrent";
   gluetunServiceName = "${backend}-gluetun";
-  runtimeCommand =
-    if backend == "podman" then lib.getExe pkgs.podman else "docker";
+  runtimeCommand = if backend == "podman" then lib.getExe pkgs.podman else "docker";
   waitForGluetun = pkgs.writeShellScript "wait-for-gluetun" ''
     set -euo pipefail
 
@@ -38,7 +43,8 @@ let
       rm "$marker"
     fi
   '';
-in {
+in
+{
   virtualisation.oci-containers.containers = {
     qbittorrent = {
       image = "lscr.io/linuxserver/qbittorrent:5.1.2-r3-ls422";
@@ -78,8 +84,10 @@ in {
   };
   systemd.services.${qbServiceName} = {
     # Delay qBittorrent until Gluetun's health check succeeds
-    after =
-      lib.mkAfter [ "${gluetunServiceName}.service" "network-online.target" ];
+    after = lib.mkAfter [
+      "${gluetunServiceName}.service"
+      "network-online.target"
+    ];
     requires = lib.mkAfter [ "${gluetunServiceName}.service" ];
     wants = lib.mkAfter [ "network-online.target" ];
     serviceConfig.ExecStartPre = lib.mkAfter [ waitForGluetun ];

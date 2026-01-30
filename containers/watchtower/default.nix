@@ -1,8 +1,14 @@
 # Known issue on container recreation: https://github.com/containrrr/watchtower/issues/1060#issuecomment-2415846223
 
-{ config, vars, pkgs, ... }:
+{
+  config,
+  vars,
+  pkgs,
+  ...
+}:
 let
-in {
+in
+{
   sops.secrets.watchtower-api-key = { };
 
   virtualisation.oci-containers = {

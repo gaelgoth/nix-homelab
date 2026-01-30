@@ -22,7 +22,9 @@
         "wallos-logos:/var/www/html/images/uploads/logos"
       ];
       ports = [ "8282:80" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
   };
 }
