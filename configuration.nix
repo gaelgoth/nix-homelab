@@ -106,7 +106,7 @@ in
     pkgs.gitMinimal
     pkgs.nano
     pkgs.ncdu
-    pkgs.nixfmt-tree
+    pkgs.nixfmt
     pkgs.podman-tui
     pkgs.sops
     pkgs.tmux

@@ -54,6 +54,7 @@
           ./containers/transmission
           ./containers/uptimekuma
           ./containers/wallos
+          ./containers/openclaw
 
           # ./containers/neko
           # ./containers/watchtower
