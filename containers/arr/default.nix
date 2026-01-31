@@ -44,7 +44,9 @@
       ];
       volumes = [ "prowlarr-config:/config" ];
       ports = [ "9696:9696" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
 
     sonarr = {
@@ -71,7 +73,9 @@
         "${config.homelab.mediaPath}/torrent/complete/tv-sonarr:/downloads/tv-sonarr"
       ];
       ports = [ "8989:8989" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
 
     radarr = {
@@ -98,7 +102,9 @@
         "${config.homelab.mediaPath}/torrent/complete/radarr:/downloads/radarr"
       ];
       ports = [ "7878:7878" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
 
     bazarr = {
@@ -123,7 +129,9 @@
         "${config.homelab.mediaPath}/Shows:/tv"
       ];
       ports = [ "6767:6767" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
   };
 }

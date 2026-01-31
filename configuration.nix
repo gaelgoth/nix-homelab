@@ -1,8 +1,22 @@
-{ modulesPath, config, lib, pkgs, inputs, ... }:
+{
+  modulesPath,
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
-  nfsDefaultOptions =
-    [ "nofail" "noatime" "nolock" "intr" "tcp" "actimeo=1800" ];
-in {
+  nfsDefaultOptions = [
+    "nofail"
+    "noatime"
+    "nolock"
+    "intr"
+    "tcp"
+    "actimeo=1800"
+  ];
+in
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -25,19 +39,28 @@ in {
     efiInstallAsRemovable = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking = {
     hostName = "nixos-homelab-vm";
     firewall.enable = true;
 
     interfaces.ens3.useDHCP = false;
-    interfaces.ens3.ipv4.addresses = [{
-      address = config.homelab.ip;
-      prefixLength = 24;
-    }];
+    interfaces.ens3.ipv4.addresses = [
+      {
+        address = config.homelab.ip;
+        prefixLength = 24;
+      }
+    ];
     defaultGateway = "192.168.1.1";
-    nameservers = [ config.homelab.nasIp "8.8.8.8" "1.1.1.1" ];
+    nameservers = [
+      config.homelab.nasIp
+      "8.8.8.8"
+      "1.1.1.1"
+    ];
   };
 
   time.timeZone = "Europe/Zurich";
@@ -76,7 +99,7 @@ in {
     pkgs.gitMinimal
     pkgs.nano
     pkgs.ncdu
-    pkgs.nixfmt-classic
+    pkgs.nixfmt-tree
     pkgs.podman-tui
     pkgs.sops
     pkgs.tmux

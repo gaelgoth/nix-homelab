@@ -13,7 +13,10 @@
         "-l=homepage.href=http://${vars.homelabStaticIp}:3023"
         "-l=homepage.description=Remote browser service with Firefox"
       ];
-      ports = [ "3023:8080" "52000-52100:52000-52100/udp" ];
+      ports = [
+        "3023:8080"
+        "52000-52100:52000-52100/udp"
+      ];
       environment = {
         NEKO_SCREEN = "1024x576@30";
         NEKO_PASSWORD = "neko";

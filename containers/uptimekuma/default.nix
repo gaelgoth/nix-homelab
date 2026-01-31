@@ -22,7 +22,9 @@
         "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
       ];
       ports = [ "3005:3001" ];
-      environment = { TZ = config.time.timeZone; };
+      environment = {
+        TZ = config.time.timeZone;
+      };
     };
   };
 }
