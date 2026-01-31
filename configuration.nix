@@ -151,6 +151,21 @@ in
     };
   };
 
+  system.activationScripts.ensureBinDir = {
+    deps = [ "specialfs" ];
+    text = ''
+      if [ -L /bin ]; then
+        rm -f /bin
+      fi
+      if [ ! -d /bin ]; then
+        mkdir -p /bin
+      fi
+      chmod 0755 /bin
+    '';
+  };
+
+  system.activationScripts.binsh.deps = lib.mkAfter [ "ensureBinDir" ];
+
   nix.optimise = {
     automatic = true;
     dates = [ "Sun 03:00" ];
