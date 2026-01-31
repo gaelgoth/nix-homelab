@@ -66,6 +66,13 @@ in
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
+
   virtualisation.containers.enable = true;
   virtualisation = {
     podman = {
