@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     nginxproxymanager = {
-      image = "jc21/nginx-proxy-manager:2.13.6";
+      image = "jc21/nginx-proxy-manager:2.13.7";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
