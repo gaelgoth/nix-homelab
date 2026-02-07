@@ -74,6 +74,10 @@ in
     "d /var/lib/openclaw/config 0755 root root -"
     "d /var/lib/openclaw/workspace 0755 root root -"
     "d /var/lib/openclaw/workspace/skills 0755 root root -"
+        # Directories for brew and uv
+    "d /var/lib/openclaw/linuxbrew 0755 1000 1000 -"
+    "d /var/lib/openclaw/local 0755 1000 1000 -"
+
   ];
 
   # Systemd service to write openclaw.json config with secrets
@@ -189,8 +193,8 @@ in
       "--init"
       "-l=homepage.group=AI"
       "-l=homepage.name=OpenClaw"
-      "-l=homepage.icon=robot.png"
-      "-l=homepage.href=http://${vars.homelabIp}:18789"
+      "-l=homepage.icon=openclaw.png"
+      "-l=homepage.href=https://openclaw.homelab.gothuey.dev"
       "-l=homepage.description=Personal AI Assistant"
     ];
     ports = [
