@@ -1,6 +1,10 @@
 { config, ... }:
 
 {
+  sops.secrets.ygege-env = {
+    sopsFile = ../../secrets/secrets.yaml;
+  };
+
   virtualisation.oci-containers.containers = {
     jellyseerr = {
       image = "fallenbagel/jellyseerr:2.7.3";
@@ -42,10 +46,36 @@
         "-l=homepage.widget.url=http://${config.homelab.ip}:9696"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_PROWLARR_KEY}}"
       ];
-      volumes = [ "prowlarr-config:/config" ];
+      volumes = [
+        "prowlarr-config:/config"
+        "${./ygege.yml}:/config/Definitions/Custom/ygege.yml:ro"
+      ];
       ports = [ "9696:9696" ];
       environment = {
         TZ = config.time.timeZone;
+      };
+    };
+
+    ygege = {
+      image = "uwucode/ygege:latest";
+      autoStart = true;
+      extraOptions = [
+        "--pull=newer"
+        "-l=homepage.group=Media"
+        "-l=homepage.name=Ygege"
+        "-l=homepage.icon=ygege.svg"
+        "-l=homepage.href=http://${config.homelab.ip}:8715"
+        "-l=homepage.description=YGG indexer bridge"
+        "-l=homepage.weight=4"
+      ];
+      volumes = [ "ygege-config:/config" ];
+      ports = [ "8715:8715" ];
+      environmentFiles = [ config.sops.secrets.ygege-env.path ];
+      environment = {
+        TZ = config.time.timeZone;
+        LOG_LEVEL = "info";
+        BIND_IP = "0.0.0.0";
+        BIND_PORT = "8715";
       };
     };
 
