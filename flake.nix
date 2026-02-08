@@ -36,6 +36,7 @@
 
           ./containers/adguardhome
           ./containers/arr
+          ./containers/cleanuparr
           ./containers/changedetection
           ./containers/dockge
           ./containers/dozzle

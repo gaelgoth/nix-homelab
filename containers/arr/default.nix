@@ -63,7 +63,7 @@
         "--pull=newer"
         "-l=homepage.group=Media"
         "-l=homepage.name=Ygege"
-        "-l=homepage.icon=ygege.svg"
+        "-l=homepage.icon=podcast-index-light.png"
         "-l=homepage.href=http://${config.homelab.ip}:8715"
         "-l=homepage.description=YGG indexer bridge"
         "-l=homepage.weight=4"

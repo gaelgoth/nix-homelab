@@ -191,7 +191,7 @@ in
     autoStart = true;
     extraOptions = [
       "--init"
-      "-l=homepage.group=AI"
+      "-l=homepage.group=Services"
       "-l=homepage.name=OpenClaw"
       "-l=homepage.icon=openclaw.png"
       "-l=homepage.href=https://openclaw.homelab.gothuey.dev"
