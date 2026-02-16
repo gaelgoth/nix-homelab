@@ -46,6 +46,8 @@
           ./modules/tailscale
           ./modules/cloudflared
 
+          ./containers/openclaw
+
           ./containers/adguardhome
           ./containers/arr
           ./containers/changedetection

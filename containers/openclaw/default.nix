@@ -74,7 +74,7 @@ in
     "d /var/lib/openclaw/config 0755 root root -"
     "d /var/lib/openclaw/workspace 0755 root root -"
     "d /var/lib/openclaw/workspace/skills 0755 root root -"
-        # Directories for brew and uv
+    # Directories for brew and uv
     "d /var/lib/openclaw/linuxbrew 0755 1000 1000 -"
     "d /var/lib/openclaw/local 0755 1000 1000 -"
 
