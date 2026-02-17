@@ -9,6 +9,13 @@
       http_port = 2342;
       http_addr = ""; # listen (bind) to all network interfaces (i.e. 127.0.0.1, and ipAddress)
     };
+    settings.security = {
+      secret_key = "file:${config.sops.secrets."grafana-password".path}";
+    };
+  };
+
+  sops.secrets = {
+    "grafana-password" = { };
   };
 
   services.loki = {
