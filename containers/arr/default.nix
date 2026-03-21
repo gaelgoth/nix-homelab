@@ -13,7 +13,7 @@
         "--pull=newer"
         "--init"
         "-l=homepage.group=Media"
-        "-l=homepage.name=Jellyseerr"
+        "-l=homepage.name=Seerr"
         "-l=homepage.icon=jellyseerr.svg"
         # "-l=homepage.href=http://${config.homelab.ip}:5055"
         "-l=homepage.href=https://jellyseerr.${config.homelab.domain}"
@@ -23,11 +23,12 @@
         "-l=homepage.widget.url=http://${config.homelab.ip}:5055"
         "-l=homepage.widget.key={{HOMEPAGE_FILE_JELLYSEERR_KEY}}"
       ];
-      volumes = [ "jellyseerr-config:/app/config" ];
+      volumes = [ "jellyseerr-config:/app/config:U" ];
       ports = [ "5055:5055" ];
       environment = {
         TZ = config.time.timeZone;
         LOG_LEVEL = "info";
+        PORT = "5055";
       };
     };
 
