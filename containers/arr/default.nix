@@ -7,10 +7,11 @@
 
   virtualisation.oci-containers.containers = {
     jellyseerr = {
-      image = "fallenbagel/jellyseerr:2.7.3";
+      image = "ghcr.io/seerr-team/seerr:v3.1.0";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
+        "--init"
         "-l=homepage.group=Media"
         "-l=homepage.name=Jellyseerr"
         "-l=homepage.icon=jellyseerr.svg"
