@@ -187,7 +187,7 @@ in
   };
 
   virtualisation.oci-containers.containers.openclaw = {
-    image = "ghcr.io/openclaw/openclaw:2026.5.6";
+    image = "ghcr.io/openclaw/openclaw:2026.5.7";
     autoStart = true;
     extraOptions = [
       "--init"
