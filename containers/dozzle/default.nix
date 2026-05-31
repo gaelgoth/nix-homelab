@@ -2,7 +2,7 @@
 {
   virtualisation.oci-containers.containers = {
     dozzle = {
-      image = "amir20/dozzle:v10.6.2";
+      image = "amir20/dozzle:v10.6.3";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
