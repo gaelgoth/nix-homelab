@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     jellyseerr = {
-      image = "ghcr.io/seerr-team/seerr:v3.2.0";
+      image = "ghcr.io/seerr-team/seerr:v3.3.0";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
