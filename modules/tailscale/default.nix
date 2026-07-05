@@ -30,14 +30,16 @@
       # wait for tailscaled to settle
       sleep 2
 
-      # check if we are already authenticated to tailscale
+      # check if tailscale is connected and already advertising desired routes
       status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-      if [ $status = "Running" ]; then # if so, then do nothing
+      configured="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r '((.Self.AdvertisedRoutes // []) | index("192.168.1.0/24") != null) and ((.Self.AdvertisedRoutes // []) | index("0.0.0.0/0") != null) and ((.Self.AdvertisedRoutes // []) | index("::/0") != null)')"
+
+      if [[ "$status" = "Running" ]] && [[ "$configured" = "true" ]]; then
         exit 0
       fi
 
-      # otherwise authenticate with tailscale
-      ${tailscale}/bin/tailscale up --advertise-routes=192.168.1.0/24
+      # otherwise ensure subnet-router and exit-node advertisement are enabled
+      ${tailscale}/bin/tailscale up --advertise-routes=192.168.1.0/24 --advertise-exit-node
     '';
   };
 
