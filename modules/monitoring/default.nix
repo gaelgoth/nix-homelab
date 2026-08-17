@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   networking.firewall.allowedTCPPorts = [ 2342 ];
 
@@ -139,6 +139,27 @@
     ];
     enable = true;
     port = 9001;
+    # Pinned to the upstream prebuilt release: nixpkgs' prometheus-assets
+    # build (pnpm_11) hits registry.npmjs.org for supply-chain attestations
+    # even with --offline, which fails in the sandboxed build. Bump
+    # version/hash manually from https://github.com/prometheus/prometheus/releases
+    # (sha256sums.txt) until upstream nixpkgs fixes this.
+    package = pkgs.stdenv.mkDerivation (finalAttrs: {
+      pname = "prometheus";
+      version = "3.13.2";
+      src = pkgs.fetchurl {
+        url = "https://github.com/prometheus/prometheus/releases/download/v${finalAttrs.version}/prometheus-${finalAttrs.version}.linux-amd64.tar.gz";
+        hash = "sha256-DoxNRhAb0CXqgmXjd9LKq8V/SI/Bvhw2fzfbaepBvm8=";
+      };
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/bin
+        cp prometheus promtool $out/bin/
+        runHook postInstall
+      '';
+      passthru.cli = finalAttrs.finalPackage;
+      meta.mainProgram = "prometheus";
+    });
     exporters = {
       node = {
         enable = true;
