@@ -74,6 +74,13 @@ in
   ];
 
   virtualisation.containers.enable = true;
+  virtualisation.containers.registries.settings = {
+    unqualified-search-registries = [
+      "docker.io"
+      "quay.io"
+    ];
+  };
+
   virtualisation = {
     podman = {
       enable = true;
