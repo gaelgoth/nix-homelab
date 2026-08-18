@@ -24,9 +24,11 @@
       ports = [
         "8778:8888/tcp"
         "8001:8000/tcp"
-        "8080:8080" # qbittorrent
-        "6881:6881" # qBittorrent
-        "6881:6881/udp" # qBittorrent
+        # qbittorrent is temporarily off gluetun's network (VPN issue) and now
+        # publishes these ports itself — uncomment once it's back on gluetun.
+        # "8080:8080" # qbittorrent
+        # "6881:6881" # qBittorrent
+        # "6881:6881/udp" # qBittorrent
         "9091:9091" # transmission web UI
         "51413:51413" # transmission peer port TCP
         "51413:51413/udp" # transmission peer port UDP
