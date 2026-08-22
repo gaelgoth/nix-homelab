@@ -58,7 +58,7 @@ in
   virtualisation.oci-containers = {
     containers = {
       homepage = {
-        image = "ghcr.io/gethomepage/homepage:v2.0.0";
+        image = "ghcr.io/gethomepage/homepage:v2.1.2";
         autoStart = true;
         extraOptions = [ "--pull=newer" ];
         volumes = [
