@@ -116,6 +116,58 @@ Build:
 - Dry-run: `sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm`
 - Rebuild: `sudo nixos-rebuild --flake .#nixos-homelab-vm switch`
 
+### Hermes Agent
+
+Hermes runs as the native `hermes-agent` system service, uses OpenRouter with
+`deepseek/deepseek-v4-flash-0731`, and accepts Telegram direct messages only
+from the user ID configured in `vars.nix`. Telegram uses outbound long polling,
+so no firewall port is required.
+
+Edit the encrypted runtime credentials with SOPS:
+
+```sh
+sops secrets/secrets.yaml
+```
+
+The decrypted `hermes-env` value must have this format:
+
+```yaml
+hermes-env: |
+  OPENROUTER_API_KEY=replace-me
+  TELEGRAM_BOT_TOKEN=replace-me
+```
+
+Deploy and verify:
+
+```sh
+sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm
+sudo nixos-rebuild switch --flake .#nixos-homelab-vm
+
+systemctl status hermes-agent
+journalctl -u hermes-agent -f
+sudo -u hermes -H hermes --version
+sudo -u hermes -H hermes config
+```
+
+The CLI and Telegram gateway share `HERMES_HOME` at
+`/var/lib/hermes/.hermes`. Run interactive CLI commands with
+`sudo -u hermes -H hermes` so files remain owned by the service account. Keep
+personas, Markdown, skills, scripts, memories, and sessions under
+`/var/lib/hermes` so they remain machine-only. Do not add them through
+repository-backed `documents`, `hermesHomeFiles`, or `configFile` options. The
+NixOS module manages `config.yaml` and the systemd service, so change
+declarative settings in `modules/hermes/default.nix` and credentials in SOPS
+instead of using `hermes setup`, `hermes config set`, or
+`hermes gateway install`.
+
+Update only Hermes, review the lockfile change, then redeploy:
+
+```sh
+nix flake update hermes-agent
+nix flake check
+sudo nixos-rebuild switch --flake .#nixos-homelab-vm
+```
+
 ## Local env utils
 
 **Install `nixfmt`**

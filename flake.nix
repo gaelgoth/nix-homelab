@@ -9,6 +9,10 @@
     };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     sops-nix.url = "github:Mic92/sops-nix";
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -17,6 +21,7 @@
       nixpkgs,
       home-manager,
       disko,
+      hermes-agent,
       vscode-server,
       sops-nix,
       ...
@@ -30,6 +35,7 @@
           vscode-server.nixosModules.default
           sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
+          hermes-agent.nixosModules.default
 
           ./configuration.nix
           ./modules/homelab/core.nix
@@ -37,6 +43,7 @@
           ./modules/monitoring
           ./modules/tailscale
           ./modules/cloudflared
+          ./modules/hermes
 
           ./containers/adguardhome
           ./containers/arr
