@@ -89,7 +89,7 @@ in
         environment = {
           TZ = config.time.timeZone;
 
-          HOMEPAGE_ALLOWED_HOSTS = "${config.homelab.ip}:3001,${config.homelab.domain}";
+          HOMEPAGE_ALLOWED_HOSTS = "${config.homelab.ip}:3001,homepage.${config.homelab.domain},${config.homelab.domain}";
 
           HOMEPAGE_FILE_ADGUARDHOME_KEY = "/app/config/adguardhome.key";
           HOMEPAGE_FILE_CHANGEDETECTION_KEY = "/app/config/changedetection.key";
