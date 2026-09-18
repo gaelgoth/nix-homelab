@@ -1,6 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # claude-code moves too fast for the stable channel to keep up; pull it from
+    # unstable instead so `nix flake update nixpkgs-unstable` alone tracks new releases.
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko = {
@@ -18,6 +21,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       disko,
       hermes-agent,
@@ -78,6 +82,14 @@
               services.vscode-server.enable = true;
             }
           )
+
+          {
+            nixpkgs.overlays = [
+              (final: prev: {
+                claude-code = nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
+              })
+            ];
+          }
         ];
       };
     };
