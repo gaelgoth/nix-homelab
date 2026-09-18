@@ -86,7 +86,11 @@
           {
             nixpkgs.overlays = [
               (final: prev: {
-                claude-code = nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
+                claude-code =
+                  (import nixpkgs-unstable {
+                    inherit (prev) system;
+                    config = prev.config;
+                  }).claude-code;
               })
             ];
           }
