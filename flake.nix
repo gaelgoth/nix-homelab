@@ -9,10 +9,7 @@
     };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     sops-nix.url = "github:Mic92/sops-nix";
-    hermes-agent = {
-      url = "github:NousResearch/hermes-agent";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   outputs =
