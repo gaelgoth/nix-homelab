@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 let vars = import ../../vars.nix;
 in {
-  sops.secrets."hermes-env" = { restartUnits = [ "hermes-agent.service" ]; };
+  sops.secrets."hermes-env" = {
+    restartUnits = [ "hermes-agent.service" "hermes-backend.service" ];
+  };
 
   sops.secrets."hermes-dashboard-token" = {
     owner = "hermes";
@@ -28,6 +30,20 @@ in {
     };
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
     settings.model.default = "deepseek/deepseek-v4-flash-0731";
+    settings.delegation = {
+      max_iterations = 50;
+      model = "z-ai/glm5.3";
+      provider = "openrouter";
+    };
+    extraPlugins = [
+      (pkgs.fetchFromGitHub {
+        owner = "rabilrbl";
+        repo = "hermes-brave-search-plugin";
+        name = "hermes-brave-search-plugin";
+        rev = "4134cbef910c14c63e6b284b0820b30f3811ab47";
+        hash = "sha256-XPwjM1cK4Wr43ySIFee0La64C4cbgWxSekriUYwDZVA=";
+      })
+    ];
     backend = {
       mode = "dashboard";
       host = config.homelab.ip;
@@ -37,6 +53,18 @@ in {
       command = "npx";
       args = [ "-y" "hevy-mcp" ];
       env.HEVY_API_KEY = "\${HEVY_API_KEY}";
+    };
+    mcpServers.arr = {
+      command = "npx";
+      args = [ "-y" "mcp-arr-server" ];
+      env = {
+        SONARR_URL = "http://${config.homelab.ip}:8989";
+        SONARR_API_KEY = "\${SONARR_API_KEY}";
+        RADARR_URL = "http://${config.homelab.ip}:7878";
+        RADARR_API_KEY = "\${RADARR_API_KEY}";
+        PROWLARR_URL = "http://${config.homelab.ip}:9696";
+        PROWLARR_API_KEY = "\${PROWLARR_API_KEY}";
+      };
     };
   };
 }
