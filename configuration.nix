@@ -1,22 +1,8 @@
-{
-  modulesPath,
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}:
+{ modulesPath, config, lib, pkgs, inputs, ... }:
 let
-  nfsDefaultOptions = [
-    "nofail"
-    "noatime"
-    "nolock"
-    "intr"
-    "tcp"
-    "actimeo=1800"
-  ];
-in
-{
+  nfsDefaultOptions =
+    [ "nofail" "noatime" "nolock" "intr" "tcp" "actimeo=1800" ];
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -40,14 +26,9 @@ in
   };
 
   nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters =
+      [ "https://cache.nixos.org" "https://nix-community.cachix.org" ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDvhrs="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -59,35 +40,24 @@ in
     firewall.enable = true;
 
     interfaces.ens3.useDHCP = false;
-    interfaces.ens3.ipv4.addresses = [
-      {
-        address = config.homelab.ip;
-        prefixLength = 24;
-      }
-    ];
+    interfaces.ens3.ipv4.addresses = [{
+      address = config.homelab.ip;
+      prefixLength = 24;
+    }];
     defaultGateway = "192.168.1.1";
-    nameservers = [
-      config.homelab.nasIp
-      "8.8.8.8"
-      "1.1.1.1"
-    ];
+    nameservers = [ config.homelab.nasIp "8.8.8.8" "1.1.1.1" ];
   };
 
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 8192;
-    }
-  ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 8192;
+  }];
 
   virtualisation.containers.enable = true;
-  virtualisation.containers.registries.search = [
-    "docker.io"
-    "quay.io"
-  ];
+  virtualisation.containers.registries.search = [ "docker.io" "quay.io" ];
 
   virtualisation = {
     podman = {

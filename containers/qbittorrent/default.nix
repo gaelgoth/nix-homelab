@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 let
-  backend =
-    if config.virtualisation.oci-containers ? backend then
-      config.virtualisation.oci-containers.backend
-    else
-      "docker";
+  backend = if config.virtualisation.oci-containers ? backend then
+    config.virtualisation.oci-containers.backend
+  else
+    "docker";
   qbServiceName = "${backend}-qbittorrent";
   # Disabled while VPN issue with gluetun is being fixed — uncomment to restore.
   # gluetunServiceName = "${backend}-gluetun";
@@ -44,8 +38,7 @@ let
   #     rm "$marker"
   #   fi
   # '';
-in
-{
+in {
   virtualisation.oci-containers.containers = {
     qbittorrent = {
       image = "lscr.io/linuxserver/qbittorrent:5.1.2-r3-ls422";
@@ -77,11 +70,7 @@ in
       # Published directly while qbittorrent is temporarily off gluetun's network.
       # Restore "# Ports are managed by Gluetun..." behavior by removing this list
       # once the gluetun network join above is re-enabled.
-      ports = [
-        "8080:8080"
-        "6881:6881"
-        "6881:6881/udp"
-      ];
+      ports = [ "8080:8080" "6881:6881" "6881:6881/udp" ];
       environment = {
         TZ = config.time.timeZone;
         PUID = "1000"; # adjust if different on host

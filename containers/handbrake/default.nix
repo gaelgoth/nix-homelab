@@ -21,9 +21,7 @@
         "${config.homelab.mediaPath}/share/handbrake/output:/output"
       ];
       ports = [ "5800:5800" ];
-      environment = {
-        TZ = config.time.timeZone;
-      };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

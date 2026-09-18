@@ -1,5 +1,4 @@
-{ config, vars, ... }:
-{
+{ config, vars, ... }: {
   virtualisation.oci-containers.containers = {
     grafana = {
       image = "grafana/grafana:13.2.2";
@@ -20,9 +19,7 @@
       volumes = [ "data-grafana:/var/lib/grafana" ];
 
       ports = [ "3022:3000" ];
-      environment = {
-        TZ = vars.timeZone;
-      };
+      environment = { TZ = vars.timeZone; };
     };
   };
 }

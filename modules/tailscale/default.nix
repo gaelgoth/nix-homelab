@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
 
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "server";
@@ -12,14 +11,8 @@
     description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale
-    after = [
-      "network-pre.target"
-      "tailscale.service"
-    ];
-    wants = [
-      "network-pre.target"
-      "tailscale.service"
-    ];
+    after = [ "network-pre.target" "tailscale.service" ];
+    wants = [ "network-pre.target" "tailscale.service" ];
     wantedBy = [ "multi-user.target" ];
 
     # set this service as a oneshot job

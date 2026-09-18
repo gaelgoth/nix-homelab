@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 let
   package = pkgs.obsidian-headless;
   stateDir = "/var/lib/obsidian-sync";
   vaultDir = "${stateDir}/vault";
   hermesOutputDir = "${vaultDir}/Hermes";
-in
-{
+in {
   # Puts `ob` on PATH for manual `ob login` / `ob sync-setup` (the systemd
   # unit below calls it by absolute store path, so doesn't need this).
   environment.systemPackages = [ package ];
@@ -73,10 +67,9 @@ in
     };
   };
 
-  assertions = [
-    {
-      assertion = config.services.hermes-agent.enable;
-      message = "The Obsidian Sync integration requires services.hermes-agent.enable.";
-    }
-  ];
+  assertions = [{
+    assertion = config.services.hermes-agent.enable;
+    message =
+      "The Obsidian Sync integration requires services.hermes-agent.enable.";
+  }];
 }

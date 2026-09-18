@@ -13,23 +13,13 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     # Pinned: upstream requires go >=1.25 from the next commit onward, which
     # nixos-25.05's go 1.24.10 can't build. This is the last commit still on go 1.24.
-    sops-nix.url = "github:Mic92/sops-nix?rev=17eea6f3816ba6568b8c81db8a4e6ca438b30b7c";
+    sops-nix.url =
+      "github:Mic92/sops-nix?rev=17eea6f3816ba6568b8c81db8a4e6ca438b30b7c";
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      disko,
-      hermes-agent,
-      vscode-server,
-      sops-nix,
-      ...
-    }:
-    {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, disko, hermes-agent
+    , vscode-server, sops-nix, ... }: {
       nixosConfigurations.nixos-homelab-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit sops-nix; };
@@ -77,26 +67,19 @@
           # ./containers/grafana # installed via nix package
           # ./containers/jellyfin
 
-          (
-            { config, pkgs, ... }:
-            {
-              services.vscode-server.enable = true;
-            }
-          )
+          ({ config, pkgs, ... }: { services.vscode-server.enable = true; })
 
           {
             nixpkgs.overlays = [
               (final: prev: {
-                claude-code =
-                  (import nixpkgs-unstable {
-                    inherit (prev) system;
-                    config = prev.config;
-                  }).claude-code;
-                obsidian-headless =
-                  (import nixpkgs-unstable {
-                    inherit (prev) system;
-                    config = prev.config;
-                  }).obsidian-headless;
+                claude-code = (import nixpkgs-unstable {
+                  inherit (prev) system;
+                  config = prev.config;
+                }).claude-code;
+                obsidian-headless = (import nixpkgs-unstable {
+                  inherit (prev) system;
+                  config = prev.config;
+                }).obsidian-headless;
               })
             ];
           }

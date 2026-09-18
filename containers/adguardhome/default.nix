@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   networking.firewall.allowedTCPPorts = [
     3000 # API
     3004 # WebUI
@@ -43,9 +42,7 @@
         "-l=homepage.widget.username=admin"
         "-l=homepage.widget.password={{HOMEPAGE_FILE_ADGUARDHOME_KEY}}"
       ];
-      environment = {
-        TZ = config.time.timeZone;
-      };
+      environment = { TZ = config.time.timeZone; };
       volumes = [
         "adguardhome-work-data:/opt/adguardhome/work"
         "adguardhome-conf-data:/opt/adguardhome/conf"

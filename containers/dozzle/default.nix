@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     dozzle = {
       image = "amir20/dozzle:v11.1.0";
@@ -16,9 +15,7 @@
       volumes = [ "/var/run/podman/podman.sock:/var/run/docker.sock:ro" ];
 
       ports = [ "3024:8080" ];
-      environment = {
-        TZ = config.time.timeZone;
-      };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

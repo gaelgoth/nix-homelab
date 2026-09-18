@@ -18,9 +18,7 @@
 
       volumes = [ "${config.homelab.mediaPath}/downloads:/downloads" ];
       ports = [ "3025:8081" ];
-      environment = {
-        TZ = config.time.timeZone;
-      };
+      environment = { TZ = config.time.timeZone; };
     };
   };
 }

@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     transmission = {
       # Using linuxserver.io image for Transmission

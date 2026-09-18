@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     dockge = {
       image = "louislam/dockge:1";

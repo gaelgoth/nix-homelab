@@ -1,11 +1,7 @@
 { config, pkgs, ... }:
-let
-  vars = import ../../vars.nix;
-in
-{
-  sops.secrets."hermes-env" = {
-    restartUnits = [ "hermes-agent.service" ];
-  };
+let vars = import ../../vars.nix;
+in {
+  sops.secrets."hermes-env" = { restartUnits = [ "hermes-agent.service" ]; };
 
   sops.secrets."hermes-dashboard-token" = {
     owner = "hermes";
@@ -21,10 +17,7 @@ in
     enable = true;
     addToSystemPackages = true;
     extraDependencyGroups = [ "messaging" ];
-    extraPackages = [
-      pkgs.nodejs
-      pkgs.gh
-    ];
+    extraPackages = [ pkgs.nodejs pkgs.gh ];
     environment = {
       GIT_AUTHOR_NAME = "Hermes";
       GIT_AUTHOR_EMAIL = "hermes@${vars.defaultDomain}";
@@ -42,10 +35,7 @@ in
     };
     mcpServers.hevy = {
       command = "npx";
-      args = [
-        "-y"
-        "hevy-mcp"
-      ];
+      args = [ "-y" "hevy-mcp" ];
       env.HEVY_API_KEY = "\${HEVY_API_KEY}";
     };
   };
