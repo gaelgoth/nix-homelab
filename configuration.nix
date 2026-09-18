@@ -117,6 +117,7 @@ in
     pkgs.podman-tui
     pkgs.sops
     pkgs.tmux
+    pkgs.claude-code
   ];
 
   users.users = {
