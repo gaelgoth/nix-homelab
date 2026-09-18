@@ -16,6 +16,10 @@
         href: https://nas.homelab.gothuey.dev/?launchApp=SYNO.Foto.AppInstance
 
 - System:
+    - Hermes:
+        icon: hermes.svg
+        href: http://192.168.1.5:9119
+        description: AI agent dashboard
     - Grafana:
         icon: grafana.png
         href: http://192.168.1.5:2342
