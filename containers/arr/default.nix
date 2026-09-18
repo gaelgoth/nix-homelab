@@ -121,7 +121,10 @@
       ];
       volumes = [
         "bazarr-config:/config"
-        "${config.homelab.mediaPath}/Movies:/movies"
+        # Radarr exposes the movie library at /Movies; bazarr imports these paths
+        # from Radarr/Sonarr, so the container-side mount must match or the
+        # nightly analysis fails with "video file cannot be found".
+        "${config.homelab.mediaPath}/Movies:/Movies"
         "${config.homelab.mediaPath}/Shows:/tv"
       ];
       ports = [ "6767:6767" ];
