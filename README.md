@@ -135,6 +135,8 @@ The decrypted `hermes-env` value must have this format:
 hermes-env: |
   OPENROUTER_API_KEY=replace-me
   TELEGRAM_BOT_TOKEN=replace-me
+  HEVY_API_KEY=replace-me
+  GITHUB_TOKEN=replace-me
 ```
 
 Deploy and verify:
@@ -167,6 +169,88 @@ nix flake update hermes-agent
 nix flake check
 sudo nixos-rebuild switch --flake .#nixos-homelab-vm
 ```
+
+### Hermes GitHub access
+
+Hermes can propose changes to this repo itself, landed as a reviewable GitHub
+PR — never by hand-editing your local `/root/nix-homelab` checkout or writing
+to its own runtime config. It uses its bundled `github` skill
+(`skills/software-development/github/SKILL.md`), which drives the whole
+branch/commit/push/PR lifecycle through the `gh` CLI, authenticated via the
+`GITHUB_TOKEN` set above. `git`/`openssh` already ship with the
+`hermes-agent` package; `gh` is added via `extraPackages`. Commit identity
+(`GIT_AUTHOR_NAME`/`GIT_AUTHOR_EMAIL`/committer equivalents) is set in
+`modules/hermes/default.nix`.
+
+Generate `GITHUB_TOKEN` as a **fine-grained personal access token** scoped to
+just this repo (`gaelgoth/nix-homelab`), with only `Contents: Read & write`
+and `Pull requests: Read & write` — not a classic broad `repo`-scope token.
+
+Hermes works in its own clone under `/var/lib/hermes/workspace` (its default
+terminal working directory), not your `/root/nix-homelab` checkout — it
+never touches your local working tree. Review its PRs on GitHub, then
+`git pull`/rebuild from your own checkout when ready.
+
+**Strongly recommended:** enable branch protection on `main` on GitHub
+(require a PR before merging, disallow direct pushes) so hermes — or a
+leaked token — can never bypass review, regardless of what its skill/prompt
+says to do.
+
+### Obsidian Sync
+
+`obsidian-headless` (the official `ob` CLI, pulled from `nixpkgs-unstable` via
+an overlay since it isn't in the pinned `nixos-25.05` channel) continuously
+syncs an Obsidian Sync vault down to `/var/lib/obsidian-sync/vault` as the
+dedicated `obsidian-sync` system user. Hermes gets read-only access to the
+whole vault plus read-write access to `vault/Hermes/`, via the shared
+`obsidian-vault` group and `OBSIDIAN_VAULT_PATH` (set in
+`modules/hermes/default.nix`) — its bundled Obsidian skill reads/writes notes
+straight off disk, no REST API plugin or GUI involved. No virtual
+display/Electron is needed anywhere; `ob` is a plain Node CLI.
+
+Deploy:
+
+```sh
+sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm
+sudo nixos-rebuild switch --flake .#nixos-homelab-vm
+```
+
+The `obsidian-sync` service is gated by `ExecCondition = ob sync-status` and
+stays inactive (not crash-looping) until the one-time interactive login and
+vault link below have been done. This is the step to redo whenever the stored
+credentials are lost/rotated or you're rebuilding this VM from scratch:
+
+```sh
+# Login to your Obsidian account (prompts for email/password/MFA)
+sudo -u obsidian-sync -H ob login
+
+# Find your vault's name or id
+sudo -u obsidian-sync -H ob sync-list-remote
+
+# Link the local vault dir to it (add --password for an end-to-end encrypted vault)
+sudo -u obsidian-sync -H ob sync-setup --vault "<vault name>" --path /var/lib/obsidian-sync/vault
+
+sudo systemctl start obsidian-sync
+```
+
+Verify:
+
+```sh
+systemctl status obsidian-sync
+journalctl -u obsidian-sync -f
+
+# should be readable, but only writable under Hermes/
+sudo -u hermes -H ls -la /var/lib/obsidian-sync/vault
+```
+
+To re-point at a different vault, or after a botched setup:
+
+```sh
+sudo -u obsidian-sync -H ob sync-unlink --path /var/lib/obsidian-sync/vault
+sudo -u obsidian-sync -H ob logout   # only if switching Obsidian accounts too
+```
+
+then repeat the login/sync-setup steps above.
 
 ## Local env utils
 

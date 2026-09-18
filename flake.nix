@@ -47,6 +47,7 @@
           ./modules/tailscale
           ./modules/cloudflared
           ./modules/hermes
+          ./modules/obsidian-sync
 
           ./containers/adguardhome
           ./containers/arr
@@ -91,6 +92,11 @@
                     inherit (prev) system;
                     config = prev.config;
                   }).claude-code;
+                obsidian-headless =
+                  (import nixpkgs-unstable {
+                    inherit (prev) system;
+                    config = prev.config;
+                  }).obsidian-headless;
               })
             ];
           }
