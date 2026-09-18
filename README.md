@@ -196,6 +196,14 @@ never touches your local working tree. Review its PRs on GitHub, then
 leaked token — can never bypass review, regardless of what its skill/prompt
 says to do.
 
+**Logs, for self-diagnosis:** hermes's `hermes` user is in the
+`systemd-journal` group, so it can read the full system journal — including
+`nixos-upgrade.service` (auto-upgrade runs) and every container, since each
+one here runs as a `podman-<name>.service` unit whose output already lands
+in the journal. This lets it notice a failed auto-upgrade or a crashing
+container and open a fix PR, without granting it write/control over
+anything (`journalctl` access is read-only).
+
 ### Obsidian Sync
 
 `obsidian-headless` (the official `ob` CLI, pulled from `nixpkgs-unstable` via

@@ -7,6 +7,8 @@ in
     restartUnits = [ "hermes-agent.service" ];
   };
 
+  users.users.hermes.extraGroups = [ "systemd-journal" ];
+
   services.hermes-agent = {
     enable = true;
     addToSystemPackages = true;
