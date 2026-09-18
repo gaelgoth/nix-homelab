@@ -294,3 +294,10 @@ journalctl -u nixos-upgrade.service
 - `nixos-anywhere` with ARM Mac: https://seanrmurphy.medium.com/bringing-up-a-nixos-vm-in-10-minutes-using-nixos-anywhere-6590b49ad146
 - Set up `sops-nix`: https://www.youtube.com/watch?v=G5f6GC7SnhU&t=1s
 - Flake auto-upgrade: https://github.com/eh8/chenglab/blob/main/.github/workflows/flake.yml
+
+## Test marker (Hermes PR workflow)
+
+This section is a disposable marker added by Hermes to exercise the
+branch → push → pull-request workflow. It exists only to confirm that Hermes
+can propose changes to this repo as a reviewable GitHub PR rather than pushing
+directly to `main`. It can be removed without any loss. (2026-09-18)
