@@ -8,7 +8,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    sops-nix.url = "github:Mic92/sops-nix";
+    # Pinned: upstream requires go >=1.25 from the next commit onward, which
+    # nixos-25.05's go 1.24.10 can't build. This is the last commit still on go 1.24.
+    sops-nix.url = "github:Mic92/sops-nix?rev=17eea6f3816ba6568b8c81db8a4e6ca438b30b7c";
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
