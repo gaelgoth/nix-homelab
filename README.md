@@ -210,7 +210,7 @@ anything (`journalctl` access is read-only).
 an overlay since it isn't in the pinned `nixos-25.05` channel) continuously
 syncs an Obsidian Sync vault down to `/var/lib/obsidian-sync/vault` as the
 dedicated `obsidian-sync` system user. Hermes gets read-only access to the
-whole vault plus read-write access to `vault/Hermes/`, via the shared
+whole vault plus read-write access to `vault/05-Hermes/`, via the shared
 `obsidian-vault` group and `OBSIDIAN_VAULT_PATH` (set in
 `modules/hermes/default.nix`) — its bundled Obsidian skill reads/writes notes
 straight off disk, no REST API plugin or GUI involved. No virtual

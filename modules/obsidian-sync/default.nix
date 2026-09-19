@@ -3,7 +3,7 @@ let
   package = pkgs.obsidian-headless;
   stateDir = "/var/lib/obsidian-sync";
   vaultDir = "${stateDir}/vault";
-  hermesOutputDir = "${vaultDir}/Hermes";
+  hermesOutputDir = "${vaultDir}/05-Hermes";
 in {
   # Puts `ob` on PATH for manual `ob login` / `ob sync-setup` (the systemd
   # unit below calls it by absolute store path, so doesn't need this).

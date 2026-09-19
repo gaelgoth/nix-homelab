@@ -30,6 +30,12 @@ in {
     };
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
     settings.model.default = "deepseek/deepseek-v4-flash-0731";
+    settings.fallback_providers = [
+      {
+        provider = "openrouter";
+        model = "openai/gpt-5.6-sol";
+      }
+    ];
     settings.delegation = {
       max_iterations = 50;
       model = "z-ai/glm-5.3-flash";
@@ -65,10 +71,6 @@ in {
         PROWLARR_URL = "http://${config.homelab.ip}:9696";
         PROWLARR_API_KEY = "\${PROWLARR_API_KEY}";
       };
-    };
-    mcpServers.donsetch = {
-      command = "npx";
-      args = [ "-y" "donsetch" "mcp" "--supervised" ];
     };
   };
 }
