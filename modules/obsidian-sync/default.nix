@@ -50,7 +50,10 @@ in {
         ExecStart = "${package}/bin/ob sync --continuous --path ${vaultDir}";
         Restart = "on-failure";
         RestartSec = 10;
-        UMask = "0027";
+        # 0007 (not 0027): notes pulled from Obsidian are born group-writable
+        # (rw-rw----) for the obsidian-vault group, so the agent can write to
+        # them.
+        UMask = "0007";
 
         NoNewPrivileges = true;
         PrivateTmp = true;
@@ -61,6 +64,12 @@ in {
     };
 
     hermes-agent.serviceConfig = {
+      ReadOnlyPaths = [ vaultDir ];
+      ReadWritePaths = [ hermesOutputDir ];
+      SupplementaryGroups = [ "obsidian-vault" ];
+    };
+
+    hermes-backend.serviceConfig = {
       ReadOnlyPaths = [ vaultDir ];
       ReadWritePaths = [ hermesOutputDir ];
       SupplementaryGroups = [ "obsidian-vault" ];
