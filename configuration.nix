@@ -93,6 +93,7 @@ in {
     pkgs.ncdu
     pkgs.nixfmt
     pkgs.podman-tui
+    pkgs.pre-commit
     pkgs.sops
     pkgs.tmux
     pkgs.claude-code
