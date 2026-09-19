@@ -47,17 +47,10 @@ in {
         # Stays inactive (rather than crash-looping) until `ob login` +
         # `ob sync-setup` have been run interactively as obsidian-sync.
         ExecCondition = "${package}/bin/ob sync-status --path ${vaultDir}";
-        # Make existing Hermes output notes group-writable on every service
-        # start, so the hermes agent (a member of the obsidian-vault group) can
-        # append to notes it didn't create (e.g. log to Hermes/01-fitness-goal.md).
-        ExecStartPre = "${pkgs.coreutils}/bin/chmod -R g+w ${hermesOutputDir}";
         ExecStart = "${package}/bin/ob sync --continuous --path ${vaultDir}";
         Restart = "on-failure";
         RestartSec = 10;
-        # 0007 (not 0027): notes pulled from Obsidian are born group-writable
-        # (rw-rw----) for the obsidian-vault group, so the agent can write to
-        # them even before the next service start would chmod them.
-        UMask = "0007";
+        UMask = "0027";
 
         NoNewPrivileges = true;
         PrivateTmp = true;
