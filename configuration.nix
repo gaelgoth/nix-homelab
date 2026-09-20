@@ -91,7 +91,7 @@ in {
     pkgs.gitMinimal
     pkgs.nano
     pkgs.ncdu
-    pkgs.nixfmt
+    pkgs.nixfmt-classic
     pkgs.podman-tui
     pkgs.pre-commit
     pkgs.sops
