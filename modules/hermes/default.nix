@@ -30,26 +30,28 @@ in {
     };
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
     settings.model.default = "deepseek/deepseek-v4-flash-0731";
-    settings.fallback_providers = [
-      {
-        provider = "openrouter";
-        model = "openai/gpt-5.6-sol";
-      }
-    ];
+    settings.fallback_providers = [{
+      provider = "openrouter";
+      model = "openai/gpt-5.6-sol";
+    }];
     settings.delegation = {
       max_iterations = 50;
       model = "z-ai/glm-5.3-flash";
       provider = "openrouter";
     };
-    settings.platforms.telegram.extra.dm_topics = [
-      {
-        chat_id = vars.telegramUserId;
-        topics = [
-          { name = "Master"; icon_color = 7322096; } # blue
-          { name = "Coach"; icon_color = 9367192; } # green
-        ];
-      }
-    ];
+    settings.platforms.telegram.extra.dm_topics = [{
+      chat_id = vars.telegramUserId;
+      topics = [
+        {
+          name = "Master";
+          icon_color = 7322096;
+        } # blue
+        {
+          name = "Coach";
+          icon_color = 9367192;
+        } # green
+      ];
+    }];
     extraPlugins = [
       (pkgs.fetchFromGitHub {
         owner = "rabilrbl";
