@@ -41,6 +41,15 @@ in {
       model = "z-ai/glm-5.3-flash";
       provider = "openrouter";
     };
+    settings.platforms.telegram.extra.dm_topics = [
+      {
+        chat_id = vars.telegramUserId;
+        topics = [
+          { name = "Master"; icon_color = 7322096; } # blue
+          { name = "Coach"; icon_color = 9367192; } # green
+        ];
+      }
+    ];
     extraPlugins = [
       (pkgs.fetchFromGitHub {
         owner = "rabilrbl";
