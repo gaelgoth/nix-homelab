@@ -43,13 +43,13 @@ in {
       chat_id = vars.telegramUserId;
       topics = [
         {
-          name = "Master";
-          icon_color = 7322096;
-        } # blue
-        {
-          name = "Coach";
+          name = "🧠 Master";
           icon_color = 9367192;
         } # green
+        {
+          name = "🏋🏽 Coach";
+          icon_color = 13338331;
+        } # purple
       ];
     }];
     extraPlugins = [
