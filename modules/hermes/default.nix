@@ -41,16 +41,16 @@ in {
     };
     settings.platforms.telegram.extra.dm_topics = [{
       chat_id = vars.telegramUserId;
-      topics = [
-        {
-          name = "🧠 Master";
-          icon_color = 9367192;
-        } # green
-        {
-          name = "🏋🏽 Coach";
-          icon_color = 13338331;
-        } # purple
-      ];
+      # topics = [
+      #   {
+      #     name = "🧠 Master";
+      #     icon_color = 9367192;
+      #   } # green
+      #   {
+      #     name = "🏋🏽 Coach";
+      #     icon_color = 13338331;
+      #   } # purple
+      # ];
     }];
     extraPlugins = [
       (pkgs.fetchFromGitHub {
