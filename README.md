@@ -116,6 +116,29 @@ Build:
 - Dry-run: `sudo nixos-rebuild dry-activate --flake .#nixos-homelab-vm`
 - Rebuild: `sudo nixos-rebuild --flake .#nixos-homelab-vm switch`
 
+### Syncthing
+
+Syncthing uses `syncthing/syncthing:2.1.5` and appears under **Services** in
+Homepage at `http://192.168.1.5:8384` (or the configured homelab IP).
+Host networking supports LAN device discovery.
+
+Synchronized files use `${config.homelab.mediaPath}/syncthing`, normally
+`/mnt/media/syncthing`, through the existing media NFS mount. This corresponds
+to `/volume1/media/syncthing` on the NAS; no additional NFS mount is created.
+Create this directory on the NAS and allow UID/GID `1000` to read and write it.
+The container requires the media mount before starting. Configuration,
+database, and device identity persist locally in the `syncthing-config` volume.
+
+After deployment, open the GUI on a trusted LAN and immediately configure a
+GUI username/password and enable HTTPS. Update the Homepage `href` label in
+`containers/syncthing/default.nix` to `https://` and rebuild after enabling TLS.
+Trust the GUI certificate on your devices or install a trusted certificate.
+Do not expose the initial unauthenticated HTTP GUI to the internet.
+
+Add a folder using `/data` as its path, then pair another device and share the
+folder. Use a test file to verify synchronization in both directions. Other
+folders should use subdirectories of `/data` to remain on the NAS.
+
 ### Hermes Agent
 
 Hermes runs as the native `hermes-agent` system service, uses OpenRouter with

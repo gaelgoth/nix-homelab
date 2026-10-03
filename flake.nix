@@ -57,6 +57,7 @@
           ./containers/qbittorrent
           ./containers/speedtest
           ./containers/stirlingpdf
+          ./containers/syncthing
           ./containers/transmission
           ./containers/uptimekuma
           ./containers/wallos
