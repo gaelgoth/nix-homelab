@@ -52,6 +52,7 @@ in {
   sops.secrets.qbittorrent-admin-password = { };
   sops.secrets.radarr-api-key = { };
   sops.secrets.sonarr-api-key = { };
+  sops.secrets.syncthing-api-key = { };
   sops.secrets.synology-dsm-service-account-password = { };
   sops.secrets.watchtower-api-key = { };
 
@@ -80,6 +81,7 @@ in {
           "${config.sops.secrets.qbittorrent-admin-password.path}:/app/config/qbittorrent-admin-password.key"
           "${config.sops.secrets.radarr-api-key.path}:/app/config/radarr.key"
           "${config.sops.secrets.sonarr-api-key.path}:/app/config/sonarr.key"
+          "${config.sops.secrets.syncthing-api-key.path}:/app/config/syncthing.key:ro"
           "${config.sops.secrets.synology-dsm-service-account-password.path}:/app/config/synology.key"
           "${config.sops.secrets.watchtower-api-key.path}:/app/config/watchtower.key"
 
@@ -101,6 +103,7 @@ in {
           HOMEPAGE_FILE_PROWLARR_KEY = "/app/config/prowlarr.key";
           HOMEPAGE_FILE_RADARR_KEY = "/app/config/radarr.key";
           HOMEPAGE_FILE_SONARR_KEY = "/app/config/sonarr.key";
+          HOMEPAGE_FILE_SYNCTHING_KEY = "/app/config/syncthing.key";
           HOMEPAGE_FILE_QBITTORENT_KEY =
             "/app/config/qbittorrent-admin-password.key";
           HOMEPAGE_FILE_SYNOLOGY_KEY = "/app/config/synology.key";

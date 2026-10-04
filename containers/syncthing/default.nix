@@ -16,6 +16,9 @@ in {
         "-l=homepage.icon=syncthing.svg"
         "-l=homepage.href=http://${config.homelab.ip}:8384"
         "-l=homepage.description=File synchronization"
+        "-l=homepage.widget.type=syncthing"
+        "-l=homepage.widget.url=http://${config.homelab.ip}:8384"
+        "-l=homepage.widget.key={{HOMEPAGE_FILE_SYNCTHING_KEY}}"
       ];
       volumes = [
         "syncthing-config:/var/syncthing"
