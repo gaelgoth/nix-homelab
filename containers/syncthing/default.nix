@@ -6,7 +6,7 @@ in {
 
   virtualisation.oci-containers.containers = {
     syncthing = {
-      image = "syncthing/syncthing:2.1.5";
+      image = "syncthing/syncthing:2.1.6";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
