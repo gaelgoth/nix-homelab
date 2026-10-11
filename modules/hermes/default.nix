@@ -34,6 +34,13 @@ in {
       provider = "openrouter";
       model = "openai/gpt-5.6-sol";
     }];
+    # Keep the text-only default model for general work and route ONLY image
+    # understanding through a dedicated vision model (auxiliary.vision forces
+    # "text" image-input mode: the image is described to text then fed to default).
+    settings.auxiliary.vision = {
+      provider = "openrouter";
+      model = "deepseek/deepseek-v4-flash-vision-exp";
+    };
     settings.delegation = {
       max_iterations = 50;
       model = "z-ai/glm-5.3-flash";
