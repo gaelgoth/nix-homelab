@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     wallos = {
-      image = "bellamy/wallos:5.10.1";
+      image = "bellamy/wallos:5.10.2";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
