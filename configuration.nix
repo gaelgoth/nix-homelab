@@ -192,6 +192,19 @@ in {
     flake = "github:gaelgoth/nix-homelab";
   };
 
+  # The daily upgrade runs `nixos-rebuild ... --refresh`, which re-fetches every
+  # GitHub flake input on each run. The unauthenticated fetch budget
+  # (60 req/hr/IP) is the root cause of the recurring 429 failures of
+  # nixos-upgrade.service. Authenticate those fetches by reusing the GITHUB_TOKEN
+  # already held in the hermes-env sops secret; an authenticated request gets a
+  # 5,000 req/hr budget. systemd (>= 251) expands ${GITHUB_TOKEN} from the
+  # EnvironmentFile into the NIX_CONFIG value, which the nix client driven by
+  # nixos-rebuild honours for flake fetches.
+  systemd.services.nixos-upgrade = {
+    serviceConfig.EnvironmentFile = [ config.sops.secrets."hermes-env".path ];
+    environment.NIX_CONFIG = "access-tokens=github.com=\${GITHUB_TOKEN}";
+  };
+
   # Homelab shared option overrides (Phase 1 migration from vars.nix)
   homelab = {
     ip = "192.168.1.5";
