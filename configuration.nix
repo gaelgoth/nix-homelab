@@ -25,8 +25,20 @@ in {
     efiInstallAsRemovable = true;
   };
 
+  # Reduce SSD wear: keep pages resident longer, and compress swap in RAM
+  # (zswap), so far fewer swap pages are actually written to the backing disk.
+  boot.kernelParams = [
+    "vm.swappiness=10"
+    "zswap.enabled=1"
+    "zswap.compressor=zstd"
+    "zswap.zpool=zsmalloc"
+  ];
+
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
+    # Hard-link duplicate store files immediately after each build, so the
+    # store stays deduplicated between the weekly `nix.optimise` runs.
+    auto-optimise-store = true;
     substituters =
       [ "https://cache.nixos.org" "https://nix-community.cachix.org" ];
     trusted-public-keys = [
@@ -83,6 +95,14 @@ in {
       enable = true;
       settings.PasswordAuthentication = false;
     };
+
+    # Cap the journal and trim the filesystem weekly to limit write churn and
+    # let the backing SSD reclaim blocks (reduces write amplification).
+    fstrim.enable = true;
+
+    journald.extraConfig = ''
+      SystemMaxUse=256M
+    '';
   };
 
   environment.systemPackages = map lib.lowPrio [
