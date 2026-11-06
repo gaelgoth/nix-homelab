@@ -27,12 +27,15 @@ in {
 
   # Reduce SSD wear: keep pages resident longer, and compress swap in RAM
   # (zswap), so far fewer swap pages are actually written to the backing disk.
+  # zswap values are genuine kernel boot parameters, so they go in kernelParams;
+  # vm.swappiness is NOT a kernel boot parameter (only a sysctl), so it must go
+  # through boot.kernel.sysctl or the kernel silently ignores it.
   boot.kernelParams = [
-    "vm.swappiness=10"
     "zswap.enabled=1"
     "zswap.compressor=zstd"
     "zswap.zpool=zsmalloc"
   ];
+  boot.kernel.sysctl."vm.swappiness" = "10";
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
