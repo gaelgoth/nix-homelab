@@ -50,7 +50,7 @@
     };
 
     adguardhome-exporter = {
-      image = "ghcr.io/henrywhitaker3/adguard-exporter:v1.2.1";
+      image = "ghcr.io/henrywhitaker3/adguard-exporter:v1.2.3";
       autoStart = true;
       extraOptions = [ "--pull=newer" ];
       # Expose ports
