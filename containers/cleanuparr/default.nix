@@ -3,7 +3,7 @@
 {
   virtualisation.oci-containers.containers = {
     cleanuparr = {
-      image = "ghcr.io/cleanuparr/cleanuparr:2.11.1";
+      image = "ghcr.io/cleanuparr/cleanuparr:2.11.2";
       autoStart = true;
       extraOptions = [
         "--pull=newer"
